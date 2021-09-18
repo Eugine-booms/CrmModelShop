@@ -9,22 +9,22 @@ using System.Windows.Forms;
 
 namespace CrmUi
 {
-   
-    public partial class CustomerAddForm : CrmUi.AddFormBase
+    public partial class SellerAddForm : CrmUi.BaseAddForm
     {
-        public Customer Customer { get; set; }
-        public CustomerAddForm()
+        public Seller Seller { get; internal set; }
+        public SellerAddForm()
         {
             InitializeComponent();
         }
 
-        private void CustomerAddForm_Load(object sender, EventArgs e)
+        private void SellerAddForm_Load(object sender, EventArgs e)
         {
 
         }
+
         protected override void button1_Click(object sender, EventArgs e)
         {
-            Customer = new Customer() { Name = textBox1.Text };
+            Seller = new Seller() { Name = textBoxName.Text };
             Close();
         }
     }

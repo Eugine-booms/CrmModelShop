@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CrmUi
 {
-    public partial class ProductAddForm : CrmUi.AddFormBase
+    public partial class ProductAddForm : CrmUi.BaseAddForm
     {
         public Product Product { get; internal set; }
         public ProductAddForm()
@@ -19,17 +19,17 @@ namespace CrmUi
 
         private void ProductAddForm_Load(object sender, EventArgs e)
         {
-            label1.Text = "Название продукта";
+            labelName.Text = "Название продукта";
         }
         protected override void button1_Click(object sender, EventArgs e)
         {
             Product = new Product();
-            Product.Name = textBox1.Text;
-            int.TryParse(textBox2.Text, out int price);
-            Product.Price = price;
-            int.TryParse(textBox3.Text, out int count);
-            Product.Count = count;
+            Product.Name = textBoxName.Text;
+            Product.Price = numericUpDownPrice.Value;
+            Product.Count =Convert.ToInt32( numericUpDownCount.Value);
             Close();
         }
+
+
     }
 }

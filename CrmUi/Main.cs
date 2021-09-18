@@ -38,19 +38,19 @@ namespace CrmUi
             catalogSellers.Show();
         }
 
-        private void CustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        private  void CustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var catalogCustomers = new Catalog<Customer>(db.Customers);
             catalogCustomers.Show();
+            //OpenDialogAsync(sender, e);
         }
-
+       
         private void CheckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var catalogChecks = new Catalog<Check>(db.Checks);
             catalogChecks.Show();
         }
-
-        private void customerAddToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void CustomerAddToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             var customerAddForm = new CustomerAddForm();
             if (customerAddForm.ShowDialog() == DialogResult.OK)
@@ -59,7 +59,7 @@ namespace CrmUi
                 db.SaveChanges();
             }
         }
-        private void sellerAddToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void SellerAddToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             var sellerAddForm = new SellerAddForm();
             if (sellerAddForm.ShowDialog() == DialogResult.OK)
@@ -68,8 +68,7 @@ namespace CrmUi
                 db.SaveChanges();
             }
         }
-
-        private void productAddToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ProductAddToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var productAddForm = new ProductAddForm();
             if (productAddForm.ShowDialog() == DialogResult.OK)
@@ -79,6 +78,17 @@ namespace CrmUi
             }
 
         }
+
+        //public async Task OpenDialogAsync(object sender, EventArgs e)
+        //{
+        //    await Task.Run(() => OpenDialog(sender, e));
+        //}
+
+        //private void OpenDialog(object sender, EventArgs e)
+        //{
+        //    var catalogCustomers = new Catalog<Customer>(db.Customers);
+        //    catalogCustomers.Show();
+        //}
     }
 
 }

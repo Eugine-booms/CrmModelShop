@@ -77,7 +77,7 @@ namespace CrmUi
             this.productAddToolStripMenuItem.Name = "productAddToolStripMenuItem";
             this.productAddToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.productAddToolStripMenuItem.Text = "Добавить";
-            this.productAddToolStripMenuItem.Click += new System.EventHandler(this.productAddToolStripMenuItem_Click);
+            this.productAddToolStripMenuItem.Click += new System.EventHandler(this.ProductAddToolStripMenuItem_Click);
             // 
             // sellerToolStripMenuItem
             // 
@@ -85,7 +85,7 @@ namespace CrmUi
             this.sellerAddToolStripMenuItem1});
             this.sellerToolStripMenuItem.Name = "sellerToolStripMenuItem";
             this.sellerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sellerToolStripMenuItem.Text = "Продавецы";
+            this.sellerToolStripMenuItem.Text = "Продавцы";
             this.sellerToolStripMenuItem.Click += new System.EventHandler(this.SellerToolStripMenuItem_Click);
             // 
             // sellerAddToolStripMenuItem1
@@ -93,7 +93,7 @@ namespace CrmUi
             this.sellerAddToolStripMenuItem1.Name = "sellerAddToolStripMenuItem1";
             this.sellerAddToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.sellerAddToolStripMenuItem1.Text = "Добавить";
-            this.sellerAddToolStripMenuItem1.Click += new System.EventHandler(this.sellerAddToolStripMenuItem1_Click);
+            this.sellerAddToolStripMenuItem1.Click += new System.EventHandler(this.SellerAddToolStripMenuItem1_Click);
             // 
             // customerToolStripMenuItem
             // 
@@ -109,7 +109,7 @@ namespace CrmUi
             this.customerAddToolStripMenuItem2.Name = "customerAddToolStripMenuItem2";
             this.customerAddToolStripMenuItem2.Size = new System.Drawing.Size(126, 22);
             this.customerAddToolStripMenuItem2.Text = "Добавить";
-            this.customerAddToolStripMenuItem2.Click += new System.EventHandler(this.customerAddToolStripMenuItem2_Click);
+            this.customerAddToolStripMenuItem2.Click += new System.EventHandler(this.CustomerAddToolStripMenuItem2_Click);
             // 
             // checkToolStripMenuItem
             // 

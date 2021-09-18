@@ -36,6 +36,7 @@ namespace CrmUi
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(384, 200);
             this.Name = "SellerAddForm";
+            this.Text = "Добавление продавца";
             this.Load += new System.EventHandler(this.SellerAddForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

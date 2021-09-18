@@ -56,11 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddFormBase.cs">
+    <Compile Include="Addforms\BaseAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddFormBase.Designer.cs">
-      <DependentUpon>AddFormBase.cs</DependentUpon>
+    <Compile Include="Addforms\BaseAddForm.Designer.cs">
+      <DependentUpon>BaseAddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Catalog.cs">
       <SubType>Form</SubType>
@@ -68,10 +68,10 @@
     <Compile Include="Catalog.Designer.cs">
       <DependentUpon>Catalog.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerAddForm.cs">
+    <Compile Include="Addforms\CustomerAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerAddForm.Designer.cs">
+    <Compile Include="Addforms\CustomerAddForm.Designer.cs">
       <DependentUpon>CustomerAddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
@@ -80,33 +80,33 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductAddForm.cs">
+    <Compile Include="Addforms\ProductAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductAddForm.Designer.cs">
+    <Compile Include="Addforms\ProductAddForm.Designer.cs">
       <DependentUpon>ProductAddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SellerAddForm.cs">
+    <Compile Include="Addforms\SellerAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SellerAddForm.Designer.cs">
+    <Compile Include="Addforms\SellerAddForm.Designer.cs">
       <DependentUpon>SellerAddForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddFormBase.resx">
-      <DependentUpon>AddFormBase.cs</DependentUpon>
+    <EmbeddedResource Include="Addforms\BaseAddForm.resx">
+      <DependentUpon>BaseAddForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalog.resx">
       <DependentUpon>Catalog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerAddForm.resx">
+    <EmbeddedResource Include="Addforms\CustomerAddForm.resx">
       <DependentUpon>CustomerAddForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductAddForm.resx">
+    <EmbeddedResource Include="Addforms\ProductAddForm.resx">
       <DependentUpon>ProductAddForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -118,7 +118,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SellerAddForm.resx">
+    <EmbeddedResource Include="Addforms\SellerAddForm.resx">
       <DependentUpon>SellerAddForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

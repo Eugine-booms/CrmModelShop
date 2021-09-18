@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CrmUi
 {
-    public partial class AddFormBase : Form
+    public partial class BaseAddForm : Form
     {
-        public AddFormBase()
+        public BaseAddForm()
         {
             InitializeComponent();
         }
