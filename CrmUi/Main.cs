@@ -52,23 +52,19 @@ namespace CrmUi
 
         private void customerAddToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            var customerAddForm = new CustomerOrSellerAddForm<Customer>();
+            var customerAddForm = new CustomerAddForm();
             if (customerAddForm.ShowDialog() == DialogResult.OK)
             {
-                db.Customers.Add(customerAddForm.Person);
+                db.Customers.Add(customerAddForm.Customer);
                 db.SaveChanges();
-
             }
-            // customerAddForm.Show();
-
-
         }
         private void sellerAddToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var sellerAddForm = new CustomerOrSellerAddForm<Seller>();
+            var sellerAddForm = new SellerAddForm();
             if (sellerAddForm.ShowDialog() == DialogResult.OK)
             {
-                db.Sellers.Add(sellerAddForm.Person);
+                db.Sellers.Add(sellerAddForm.Seller);
                 db.SaveChanges();
             }
         }
