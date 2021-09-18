@@ -4,17 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CrmUi
 {
-   
-    public partial class ProductAddForm : Form
+    public partial class ProductAddForm : CrmUi.AddFormBase
     {
-        public Product Product { get; set; }
+        public Product Product { get; internal set; }
         public ProductAddForm()
         {
             InitializeComponent();
@@ -22,21 +19,17 @@ namespace CrmUi
 
         private void ProductAddForm_Load(object sender, EventArgs e)
         {
-
+            label1.Text = "Название продукта";
         }
-
-        private void buttonSave_Click(object sender, EventArgs e)
+        protected override void button1_Click(object sender, EventArgs e)
         {
-            int.TryParse(priceBox.Text, out int price);
-            int.TryParse(countBox.Text, out int count);
-            Product = new Product()
-            {
-                Name = NameBox.Text,
-                Price= price,
-                Count = count
-            };
-
-
+            Product = new Product();
+            Product.Name = textBox1.Text;
+            int.TryParse(textBox2.Text, out int price);
+            Product.Price = price;
+            int.TryParse(textBox3.Text, out int count);
+            Product.Count = count;
+            Close();
         }
     }
 }

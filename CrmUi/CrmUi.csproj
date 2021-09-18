@@ -68,6 +68,12 @@
     <Compile Include="Catalog.Designer.cs">
       <DependentUpon>Catalog.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomerAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerAddForm.Designer.cs">
+      <DependentUpon>CustomerAddForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,11 +88,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SellerAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SellerAddForm.Designer.cs">
+      <DependentUpon>SellerAddForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddFormBase.resx">
       <DependentUpon>AddFormBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalog.resx">
       <DependentUpon>Catalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerAddForm.resx">
+      <DependentUpon>CustomerAddForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -103,6 +118,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SellerAddForm.resx">
+      <DependentUpon>SellerAddForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,6 +140,9 @@
       <Project>{f319ef9a-23dc-47cb-b956-978c9a2ecfbc}</Project>
       <Name>CrmBl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

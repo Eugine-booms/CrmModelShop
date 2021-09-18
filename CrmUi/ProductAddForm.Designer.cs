@@ -4,14 +4,14 @@ namespace CrmUi
     partial class ProductAddForm
     {
         /// <summary>
-        /// Required designer variable.
+        /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Освободить все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,101 +21,75 @@ namespace CrmUi
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.productNameLabel = new System.Windows.Forms.Label();
-            this.PriceLabel = new System.Windows.Forms.Label();
-            this.countLable = new System.Windows.Forms.Label();
-            this.NameBox = new System.Windows.Forms.TextBox();
-            this.priceBox = new System.Windows.Forms.TextBox();
-            this.countBox = new System.Windows.Forms.TextBox();
+            this.priceLabel = new System.Windows.Forms.Label();
+            this.Count = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // buttonSave
+            // textBox1
             // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonSave.Location = new System.Drawing.Point(280, 169);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
-            this.buttonSave.TabIndex = 0;
-            this.buttonSave.Text = "Сохранить";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.textBox1.Location = new System.Drawing.Point(124, 34);
+            this.textBox1.Size = new System.Drawing.Size(213, 20);
             // 
-            // productNameLabel
+            // priceLabel
             // 
-            this.productNameLabel.AutoSize = true;
-            this.productNameLabel.Location = new System.Drawing.Point(12, 20);
-            this.productNameLabel.Name = "productNameLabel";
-            this.productNameLabel.Size = new System.Drawing.Size(106, 13);
-            this.productNameLabel.TabIndex = 1;
-            this.productNameLabel.Text = "Название продукта";
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Cursor = System.Windows.Forms.Cursors.PanSW;
+            this.priceLabel.Location = new System.Drawing.Point(85, 75);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(33, 13);
+            this.priceLabel.TabIndex = 3;
+            this.priceLabel.Text = "Цена";
             // 
-            // PriceLabel
+            // Count
             // 
-            this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(12, 58);
-            this.PriceLabel.Name = "PriceLabel";
-            this.PriceLabel.Size = new System.Drawing.Size(33, 13);
-            this.PriceLabel.TabIndex = 2;
-            this.PriceLabel.Text = "Цена";
+            this.Count.AutoSize = true;
+            this.Count.Location = new System.Drawing.Point(52, 109);
+            this.Count.Name = "Count";
+            this.Count.Size = new System.Drawing.Size(66, 13);
+            this.Count.TabIndex = 4;
+            this.Count.Text = "Количество";
             // 
-            // countLable
+            // textBox2
             // 
-            this.countLable.AutoSize = true;
-            this.countLable.Location = new System.Drawing.Point(12, 99);
-            this.countLable.Name = "countLable";
-            this.countLable.Size = new System.Drawing.Size(72, 13);
-            this.countLable.TabIndex = 3;
-            this.countLable.Text = "Колличество";
+            this.textBox2.Location = new System.Drawing.Point(124, 72);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(43, 20);
+            this.textBox2.TabIndex = 5;
             // 
-            // NameBox
+            // textBox3
             // 
-            this.NameBox.Location = new System.Drawing.Point(124, 17);
-            this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(231, 20);
-            this.NameBox.TabIndex = 4;
-            this.NameBox.Text = "Название";
-            // 
-            // priceBox
-            // 
-            this.priceBox.Location = new System.Drawing.Point(124, 55);
-            this.priceBox.Name = "priceBox";
-            this.priceBox.Size = new System.Drawing.Size(100, 20);
-            this.priceBox.TabIndex = 5;
-            this.priceBox.Text = "0 ";
-            // 
-            // countBox
-            // 
-            this.countBox.Location = new System.Drawing.Point(124, 96);
-            this.countBox.Name = "countBox";
-            this.countBox.Size = new System.Drawing.Size(100, 20);
-            this.countBox.TabIndex = 6;
-            this.countBox.Text = "0";
+            this.textBox3.Location = new System.Drawing.Point(124, 106);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(43, 20);
+            this.textBox3.TabIndex = 6;
             // 
             // ProductAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 204);
-            this.Controls.Add(this.countBox);
-            this.Controls.Add(this.priceBox);
-            this.Controls.Add(this.NameBox);
-            this.Controls.Add(this.countLable);
-            this.Controls.Add(this.PriceLabel);
-            this.Controls.Add(this.productNameLabel);
-            this.Controls.Add(this.buttonSave);
+            this.ClientSize = new System.Drawing.Size(384, 200);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.Count);
+            this.Controls.Add(this.priceLabel);
             this.Name = "ProductAddForm";
-            this.Text = "Добавление продукта";
             this.Load += new System.EventHandler(this.ProductAddForm_Load);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.textBox1, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.priceLabel, 0);
+            this.Controls.SetChildIndex(this.Count, 0);
+            this.Controls.SetChildIndex(this.textBox2, 0);
+            this.Controls.SetChildIndex(this.textBox3, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,12 +97,9 @@ namespace CrmUi
 
         #endregion
 
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Label productNameLabel;
-        private System.Windows.Forms.Label PriceLabel;
-        private System.Windows.Forms.Label countLable;
-        private System.Windows.Forms.TextBox NameBox;
-        private System.Windows.Forms.TextBox priceBox;
-        private System.Windows.Forms.TextBox countBox;
+        private System.Windows.Forms.Label priceLabel;
+        private System.Windows.Forms.Label Count;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
