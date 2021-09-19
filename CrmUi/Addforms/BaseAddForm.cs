@@ -26,10 +26,5 @@ namespace CrmUi
         {
 
         }
-
-        protected virtual void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

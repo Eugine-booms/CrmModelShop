@@ -37,15 +37,31 @@ namespace CrmUi
             var type = typeof(T);
             if (type == typeof(Product))
             {
+                var productAddForm = new ProductAddForm();
+                if (productAddForm.ShowDialog() == DialogResult.OK)
+                {
+                    db.Products.Add(productAddForm.Product);
+                    db.SaveChanges();
+                }
 
             }
             else if (type == typeof(Seller))
             {
-
+                var sellerAddForm = new SellerAddForm();
+                if (sellerAddForm.ShowDialog() == DialogResult.OK)
+                {
+                    db.Sellers.Add(sellerAddForm.Seller);
+                    db.SaveChanges();
+                }
             }
             else if (type == typeof(Customer))
             {
-
+                var customerAddForm = new CustomerAddForm();
+                if (customerAddForm.ShowDialog() == DialogResult.OK)
+                {
+                    db.Customers.Add(customerAddForm.Customer);
+                    db.SaveChanges();
+                }
             }
             else if (type == typeof(Check))
             {

@@ -51,7 +51,6 @@ namespace CrmUi
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(304, 20);
             this.textBoxName.TabIndex = 1;
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // buttonSave
             // 

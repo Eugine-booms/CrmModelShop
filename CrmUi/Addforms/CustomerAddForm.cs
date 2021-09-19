@@ -24,7 +24,11 @@ namespace CrmUi
 
         private void CustomerAddForm_Load(object sender, EventArgs e)
         {
-            textBoxName.Text = Customer.Name;
+            if (Customer!=null)
+            {
+                textBoxName.Text = Customer.Name;
+            }
+            
         }
         protected override void button1_Click(object sender, EventArgs e)
         {
