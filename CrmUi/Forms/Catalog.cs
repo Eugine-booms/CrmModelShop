@@ -51,7 +51,6 @@ namespace CrmUi
             {
 
             }
-
         }
 
         private void buttonChange_Click(object sender, EventArgs e)
