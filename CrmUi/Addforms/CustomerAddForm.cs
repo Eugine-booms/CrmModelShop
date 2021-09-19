@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CrmUi
 {
-   
+
     public partial class CustomerAddForm : CrmUi.BaseAddForm
     {
         public Customer Customer { get; set; }
@@ -17,14 +17,20 @@ namespace CrmUi
         {
             InitializeComponent();
         }
+        public CustomerAddForm(Customer customer) : this()
+        {
+            this.Customer = customer;
+        }
 
         private void CustomerAddForm_Load(object sender, EventArgs e)
         {
-
+            textBoxName.Text = Customer.Name;
         }
         protected override void button1_Click(object sender, EventArgs e)
         {
-            Customer = new Customer() { Name = textBoxName.Text };
+            var customer = this.Customer ?? new Customer();
+            customer.Name = textBoxName.Text;
+            this.Customer = customer;
             Close();
         }
     }

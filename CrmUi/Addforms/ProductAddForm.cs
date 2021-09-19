@@ -16,17 +16,24 @@ namespace CrmUi
         {
             InitializeComponent();
         }
+        public ProductAddForm(Product product):this ()
+        {
+            Product = product;
+        }
 
         private void ProductAddForm_Load(object sender, EventArgs e)
         {
             labelName.Text = "Название продукта";
+            textBoxName.Text = Product.Name;
+            numericUpDownPrice.Value = Product.Price;
+            numericUpDownCount.Value = Product.Count;
         }
         protected override void button1_Click(object sender, EventArgs e)
         {
-            Product = new Product();
-            Product.Name = textBoxName.Text;
-            Product.Price = numericUpDownPrice.Value;
-            Product.Count =Convert.ToInt32( numericUpDownCount.Value);
+            var p = Product ?? new Product();
+            p.Name = textBoxName.Text;
+            p.Price = numericUpDownPrice.Value;
+            p.Count =Convert.ToInt32( numericUpDownCount.Value);
             Close();
         }
 
