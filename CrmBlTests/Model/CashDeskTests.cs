@@ -73,7 +73,11 @@ namespace CrmBl.Model.Tests
         public void CheckoutTest()
         {
 
+<<<<<<<<< Temporary merge branch 1
             var seller = new Seller() { Name = "boomsa" , SellerId = 1};
+=========
+            var seller = new Seller() { Name = "boomsa", SellerId = 1 };
+>>>>>>>>> Temporary merge branch 2
             var customer1 = new Customer() { Name = "testuser1", CustomerId = 1 };
             var cart1 = new Cart(customer1);
             var cashDesk = new CashDesk(1, seller);
