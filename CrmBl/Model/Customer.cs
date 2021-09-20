@@ -10,7 +10,7 @@ namespace CrmBl.Model
     {
         public int CustomerId { get; set; }
         public string Name { get; set; }
-        public ICollection<Check> Checks { get; set; }
+        public virtual ICollection<Check> Checks { get; set; }
         public Customer()
         {
         }

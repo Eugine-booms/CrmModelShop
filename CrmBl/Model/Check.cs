@@ -14,7 +14,9 @@ namespace CrmBl.Model
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         public DateTime Created { get; set; }
+        public decimal Summ { get; set; } = 0;
         public virtual ICollection<Sell> Sells { get; set; }
+       
         public Check()
         {
         }
