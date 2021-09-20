@@ -9,14 +9,15 @@ namespace CrmBl.Model
 {
     public class Cart : IEnumerable
     {
+       
+
+        public Customer Customer { get; set; }
+        public Dictionary<Product, int> Products { get; set; }
         public Cart(Customer customer)
         {
             Customer = customer ?? throw new ArgumentNullException(nameof(customer));
             Products = new Dictionary<Product, int>();
         }
-
-        public Customer Customer { get; set; }
-        public Dictionary<Product, int> Products { get; set; }
         public void Add(Product product)
         {
             
@@ -30,7 +31,7 @@ namespace CrmBl.Model
             }
 
         }
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        //IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         public IEnumerator GetEnumerator()
         {
             foreach (Product product in Products.Keys)

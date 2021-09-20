@@ -57,7 +57,6 @@ namespace CrmBl.Model.Tests
             {
                 Assert.AreEqual(expectedResult[i], cartResult[i]);
             }
-                      
         }
 
         //[TestMethod()]
