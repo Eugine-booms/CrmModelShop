@@ -79,8 +79,9 @@ namespace CrmBl.Model
         }
         private Sell CanSalle(Product product)
         {
-
+            
             if (product.Count > 0)
+            if (product.Count>0)
             {
                 var sell = new Sell();
                 sell.Product = product;
@@ -91,6 +92,7 @@ namespace CrmBl.Model
             return null;
         }
         private List<Sell> Seled(Cart cart, Check check)
+        public List<Sell> Selled(Cart cart, Check check)
         {
             List<Sell> sells = new List<Sell>();
             var products = cart.GetAllProduct();
@@ -99,6 +101,7 @@ namespace CrmBl.Model
             {
                 var sell = CanSalle(product);
                 if (sell != null)
+                if (sell!=null)
                 {
                     if (IsModel)
                     {
@@ -114,12 +117,33 @@ namespace CrmBl.Model
             return sells;
         }
         private void SaveDb<T>(List<T> data) where T : class
+        private void SaveDb <T>(List<T> data) where T:class
         {
             if (!IsModel)
             {
                 db.Set(typeof(T)).AddRange(data);
                 db.SaveChangesAsync();
             }
+        }
+        public Check Checkout (Cart cart)
+        {
+            var check = new Check();
+            if (cart !=null)
+            {
+                check.Created = DateTime.Now;
+                check.CustomerId = cart.Customer.CustomerId;
+                check.Customer = cart.Customer;
+                check.SellerId = Seller.SellerId;
+                check.Seller = Seller;
+                var sells = Selled(cart, check);
+                check.Sells = sells;
+            }
+            if(IsModel)
+            {
+                check.CheckId = 0;
+            }
+            SaveDb(new List<Check>() { check });
+            return check;
         }
 
 
