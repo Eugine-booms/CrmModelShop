@@ -84,6 +84,7 @@ namespace CrmUi
                         db.SaveChanges();
                         dataGridView.Update();
                         dataGridView.Show();
+                        this.Update();
                     }
                 }
             }
@@ -159,5 +160,6 @@ namespace CrmUi
                 }
             }
         }
+       
     }
 }

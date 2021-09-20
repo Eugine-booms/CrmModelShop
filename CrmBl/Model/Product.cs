@@ -22,5 +22,14 @@ namespace CrmBl.Model
         {
             return Name + " " + Price;
         }
+        public override int GetHashCode()
+        {
+            return ProductId;
+        }
+        public override bool Equals(object obj)
+        {
+            return obj is Product prod
+                && prod.ProductId.Equals(this.ProductId); 
+        }
     }
 }
