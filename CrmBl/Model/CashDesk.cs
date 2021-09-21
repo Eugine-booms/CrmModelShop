@@ -13,19 +13,36 @@ namespace CrmBl.Model
         public int Number { get; set; }
         public Seller Seller { get; set; }
         public Queue<Cart> QueueCarts { get; set; }
-        public int MaxQueueLenght { get; set; } = 10;
+
+        private int maxQueueLenght = 10;
+
+      
+
         public int ExitCustomerCount { get; set; }
         public bool IsModel { get; set; } = true;
+        public List<Check> Checks { get; private set; }
+        public int CountCustomer => QueueCarts.Count;
+        public int GetMaxQueueLenght()
+        {
+            return maxQueueLenght;
+        }
 
-        public CashDesk(int number, Seller seller)
+        public void SetMaxQueueLenght(int value)
+        {
+            maxQueueLenght = value;
+        }
+
+        public CashDesk(int number, Seller seller, int maxQueueLenght)
         {
             Number = number;
             Seller = seller ?? throw new ArgumentNullException(nameof(seller));
             QueueCarts = new Queue<Cart>();
+            Checks = new List<Check>();
+            this.maxQueueLenght = maxQueueLenght;
         }
         public Cart Enqueue (Cart cart)
         {
-            if (QueueCarts.Count<= MaxQueueLenght)
+            if (QueueCarts.Count< GetMaxQueueLenght())
             {
                 QueueCarts.Enqueue(cart);
                 return null;
@@ -36,19 +53,18 @@ namespace CrmBl.Model
                 return cart;
             }
         }
-        public decimal Work()
+        public decimal ModelWorkCashDesk()
         {
             decimal Summ = 0;
+            int checkId = 0;
             while (true)
             {
                 var nextCart = Dequeue();
                 if (nextCart == null) break;
-                var check = Checkout(nextCart);
-                Summ += check.Summ;
+                Summ += SingleCustomerService(nextCart,(this.Number*1000000+ checkId++)).Summ;
             }
             return Summ;
         }
-
         public Cart Dequeue()
         {
             if (QueueCarts.Count>0)
@@ -57,11 +73,8 @@ namespace CrmBl.Model
             }
             return null;
         }
-       
-        private Sell CanSalle(Product product)
+        private Sell ChangesNumberItems(Product product)
         {
-            
-            if (product.Count > 0)
             if (product.Count>0)
             {
                 var sell = new Sell();
@@ -72,15 +85,14 @@ namespace CrmBl.Model
             }
             return null;
         }
-        public List<Sell> Selled(Cart cart, Check check)
+        private List<Sell> Sell(Cart cart, Check check)
         {
             List<Sell> sells = new List<Sell>();
             var products = cart.GetAllProduct();
             int i = 0;
             foreach (var product in products)
             {
-                var sell = CanSalle(product);
-                if (sell != null)
+                var sell = ChangesNumberItems(product);
                 if (sell!=null)
                 {
                     if (IsModel)
@@ -104,7 +116,7 @@ namespace CrmBl.Model
                 db.SaveChangesAsync();
             }
         }
-        public Check Checkout (Cart cart)
+        public Check SingleCustomerService (Cart cart, int CheckId)
         {
             var check = new Check();
             if (cart !=null)
@@ -114,14 +126,15 @@ namespace CrmBl.Model
                 check.Customer = cart.Customer;
                 check.SellerId = Seller.SellerId;
                 check.Seller = Seller;
-                var sells = Selled(cart, check);
+                var sells = Sell(cart, check);
                 check.Sells = sells;
             }
             if(IsModel)
             {
-                check.CheckId = 0;
+                check.CheckId = CheckId;
             }
             SaveDb(new List<Check>() { check });
+            Checks.Add(check);
             return check;
         }
 

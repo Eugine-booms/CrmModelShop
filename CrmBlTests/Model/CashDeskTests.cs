@@ -72,12 +72,7 @@ namespace CrmBl.Model.Tests
         [TestMethod()]
         public void CheckoutTest()
         {
-
-<<<<<<<<< Temporary merge branch 1
-            var seller = new Seller() { Name = "boomsa" , SellerId = 1};
-=========
             var seller = new Seller() { Name = "boomsa", SellerId = 1 };
->>>>>>>>> Temporary merge branch 2
             var customer1 = new Customer() { Name = "testuser1", CustomerId = 1 };
             var cart1 = new Cart(customer1);
             var cashDesk = new CashDesk(1, seller);
@@ -104,7 +99,7 @@ namespace CrmBl.Model.Tests
             expectepSaleList.Add(product2);
             //act
             var ExpectepSaleList = new List<Product>();
-            var check = cashDesk.Checkout(cart1);
+            var check = cashDesk.SingleCustomerService(cart1);
             //Assert
             Assert.AreEqual(0, check.CheckId);
             Assert.AreEqual("testuser1", check.Customer.Name);
@@ -162,7 +157,7 @@ namespace CrmBl.Model.Tests
             //act
             cashDesk.Enqueue(cart1);
             cashDesk.Enqueue(cart2);
-            var summ =cashDesk.Work();
+            var summ =cashDesk.ModelWorkCashDesk();
             Assert.AreEqual(expectedSumm, summ);
         }
     }
