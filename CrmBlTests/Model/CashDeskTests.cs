@@ -16,7 +16,7 @@ namespace CrmBl.Model.Tests
         {
             //arrange 
             var seller = new Seller() { Name = "boomsa" };
-            var cashDesk = new CashDesk(1, seller);
+            var cashDesk = new CashDesk(1, seller, 10);
             var customer1 = new Customer() { Name = "testuser1" };
             var customer2 = new Customer() { Name = "testuser2" };
             var cart1 = new Cart(customer1);
@@ -75,7 +75,7 @@ namespace CrmBl.Model.Tests
             var seller = new Seller() { Name = "boomsa", SellerId = 1 };
             var customer1 = new Customer() { Name = "testuser1", CustomerId = 1 };
             var cart1 = new Cart(customer1);
-            var cashDesk = new CashDesk(1, seller);
+            var cashDesk = new CashDesk(1, seller, 10);
             var product1 = new Product()
             {
                 Name = "Pr1",
@@ -99,9 +99,9 @@ namespace CrmBl.Model.Tests
             expectepSaleList.Add(product2);
             //act
             var ExpectepSaleList = new List<Product>();
-            var check = cashDesk.SingleCustomerService(cart1);
+            var check = cashDesk.SingleCustomerService(cart1, cashDesk);
             //Assert
-            Assert.AreEqual(0, check.CheckId);
+            Assert.AreEqual(100001, check.CheckId);
             Assert.AreEqual("testuser1", check.Customer.Name);
             Assert.AreEqual(1, check.CustomerId);
             Assert.AreEqual("boomsa", check.Seller.Name);
@@ -120,7 +120,7 @@ namespace CrmBl.Model.Tests
         public void WorkTest()
         {
             var seller = new Seller() { Name = "boomsa" };
-            var cashDesk = new CashDesk(1, seller);
+            var cashDesk = new CashDesk(1, seller,10);
             var customer1 = new Customer() { Name = "testuser1" };
             var customer2 = new Customer() { Name = "testuser2" };
             var cart1 = new Cart(customer1);
@@ -157,7 +157,7 @@ namespace CrmBl.Model.Tests
             //act
             cashDesk.Enqueue(cart1);
             cashDesk.Enqueue(cart2);
-            var summ =cashDesk.ModelWorkCashDesk();
+            var summ =cashDesk.ModelWorkCashDesk(true, cashDesk);
             Assert.AreEqual(expectedSumm, summ);
         }
     }

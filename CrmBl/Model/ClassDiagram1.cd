@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CrmBl.Model.Cart" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAAACAAAAAQ=</HashCode>
+      <FileName>Model\Cart.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CrmBl.Model.CashDesk">
+    <Position X="13.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAIAggAAAQAIAQQEQwAgkKAAAABAAAAAAAAAAACAA=</HashCode>
+      <FileName>Model\CashDesk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrmBl.Model.Check">
+    <Position X="2.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEgAAAAAAAAAACEAAAAAgAAAAAAARQAAAAAAAAACAA=</HashCode>
+      <FileName>Model\Check.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrmBl.Model.CrmContext">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAgAAAAAAAAAAAAAAgQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Model\CrmContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrmBl.Model.Customer">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAEAAAAIAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrmBl.Model.Generator">
+    <Position X="15.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEEAIAAAAAAAAAAAAAQAAQEAEAAAAAAQAAAAAABAAQ=</HashCode>
+      <FileName>Model\Generator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrmBl.Model.Product">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAQAAAAAEgAAAAgQAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrmBl.Model.Sell">
+    <Position X="4.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Model\Sell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrmBl.Model.Seller">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAEAAAAAAQAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Seller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrmBl.Model.ShopComputerModel" Collapsed="true">
+    <Position X="13.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABBBCAQAAAAIAAAGAQAAACAAAAAIBAAAACAABA=</HashCode>
+      <FileName>Model\ShopComputerModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

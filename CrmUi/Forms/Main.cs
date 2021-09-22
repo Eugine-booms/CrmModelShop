@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CrmBl.Model;
+using CrmUi.Forms;
 
 namespace CrmUi
 {
@@ -74,6 +75,13 @@ namespace CrmUi
                 db.Products.Add(productAddForm.Product);
                 db.SaveChanges();
             }
+
+        }
+
+        private void ModelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var modForm = new ModForm();
+            modForm.Show();
 
         }
 

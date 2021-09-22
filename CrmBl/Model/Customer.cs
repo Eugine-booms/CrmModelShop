@@ -10,6 +10,7 @@ namespace CrmBl.Model
     {
         public int CustomerId { get; set; }
         public string Name { get; set; }
+        public int ProductFindTime { get; set; }
         public virtual ICollection<Check> Checks { get; set; }
         public Customer()
         {

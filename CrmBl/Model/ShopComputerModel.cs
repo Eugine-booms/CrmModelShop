@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CrmBl.Model
@@ -10,25 +11,28 @@ namespace CrmBl.Model
     {
         public Generator Generator { get; }
         public List<CashDesk> CashDesks { get; set; }
-
         public List<Cart> GoneBuyers { get; private set; }
         public Queue<Seller> Sellers { get; set; }
+        public Queue<Cart> Carts { get; set; }
+        bool IsWorking = false;
+        public event EventHandler<int> CartsQueueChanged;
+        public event EventHandler<int> BuyersGone;
+        public int CustomerSpeed { get; set; } = 100;
+        public int CashDeskSpeed { get; set; } = 100;
+        public int CashDeskCount { get; set; }
 
 
-
-        public ShopComputerModel(int sellersCount=20, int productCount=1000,  int customersCount=10)
+        public ShopComputerModel(int sellersCount = 20, int productCount = 1000, int customersCount = 10)
         {
             this.Generator = new Generator();
             this.Sellers = new Queue<Seller>();
             this.CashDesks = new List<CashDesk>();
-            Generator.GenerateNewCustomers(customersCount);
-            Generator.GenerateNewSellers(sellersCount);
+            Carts = new Queue<Cart>();
             Generator.GenerateNewProducts(productCount);
-            
-            
+            Generator.GenerateNewSellers(sellersCount);
         }
 
-        private void SeatsSellersAtCashDesks(int count)
+        public void SeatsSellersAtCashDesks(int count)
         {
             foreach (var seller in Generator.Sellers)
             {
@@ -40,61 +44,83 @@ namespace CrmBl.Model
             }
         }
 
-        public List<decimal> Start (int cashDeskCount = 3, int incomingBuyersCount=10)
+        public void Start(int  CustomerComeInDelay = 1)
         {
-            
-            SeatsSellersAtCashDesks(cashDeskCount);
-            var incomingBuyers = Generator.GetCustomers(incomingBuyersCount);
-            var carts = FormationShoppingCarts(incomingBuyers);
-            GoneBuyers= DistributesCustomerToCashDesk(carts);
-            var summList=StartWork();
-            return summList;
-        }
-
-        private List<decimal> StartWork()
-        {
-            var summList = new List<decimal>();
-            foreach (var cashDesk in CashDesks)
+            var rnd = new Random();
+            var serviceTimeRandom = rnd.NextDouble() * CashDeskSpeed*100;
+            SeatsSellersAtCashDesks(CashDeskCount);
+            IsWorking = true;
+            var generate =Task.Run(()=>GenerateShoppingCarts(CustomerSpeed));
+            Thread.Sleep(500);
+            var Distribut = Task.Run(() => DistributesCustomerToCashDesk(Carts));
+            var cashDeskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c, (int)(serviceTimeRandom*10))));
+            foreach (var task in cashDeskTasks)
             {
-                var summ = cashDesk.ModelWorkCashDesk();
-                summList.Add(summ);
+                task.Start();
             }
-            return summList;
         }
-
-        private List<Cart> DistributesCustomerToCashDesk(Queue<Cart> carts)
+        public void Stop()
         {
-            var goneBuyer = new List<Cart>();
-            while(carts.Count>0)
+            IsWorking = false;
+        }
+        private void CashDeskWork(CashDesk cashDesk, int serviceTime)
+        {
+            while (true)
             {
-                var cashDesk = GetMinCounterCashDesk();
-                var notSellCart = cashDesk.Enqueue(carts.Dequeue());
-                if (notSellCart!=null)
+                if (cashDesk.CountCustomer > 0)
                 {
-                    goneBuyer.Add(notSellCart);
+                    Thread.Sleep(serviceTime);
+                    cashDesk.SingleCustomerService(cashDesk.Dequeue(), cashDesk);
                 }
             }
-            return goneBuyer;
+        }
+
+        private void DistributesCustomerToCashDesk(Queue<Cart> carts)
+        {
+            var goneBuyer = new List<Cart>();
+            while (true)
+            {
+                while (carts != null && carts.Count > 0)
+                {
+                    var cashDesk = GetMinCounterCashDesk();
+                    var notSellCart = cashDesk.Enqueue(carts.Dequeue());
+                    if (notSellCart != null)
+                    {
+                        goneBuyer.Add(notSellCart);
+                        BuyersGone?.Invoke(this, goneBuyer.Count);
+                    }
+                }
+            }
+            GoneBuyers = goneBuyer;
         }
 
         private CashDesk GetMinCounterCashDesk()
         {
             return CashDesks.FirstOrDefault(cd => cd.CountCustomer == CashDesks.Min(c => c.CountCustomer));
         }
-
-        private Queue<Cart> FormationShoppingCarts(List<Customer> customers)
+        private void GenerateShoppingCarts(int customersCameInDelay)
         {
-            var carts = new Queue<Cart>();
-            foreach (var customer in customers)
+            while (IsWorking)
             {
-                var cart = new Cart(customer);
-                foreach (var product in Generator.GetProducts(10, 30))
-                {
-                    cart.Add(product);
-                }
-                carts.Enqueue(cart);
+
+                Carts.Enqueue(FormationShoppingCarts(10, 30));
+                CartsQueueChanged?.Invoke(this, Carts.Count);
+                Thread.Sleep(customersCameInDelay);
             }
-            return carts;
+        }
+
+        private Cart FormationShoppingCarts(int minProductCount = 10, int maxProductCount = 30)
+        {
+            Generator.GenerateNewCustomers(1);
+            var customer = (Customer)Generator.GetCustomers(1).First();
+            var cart = new Cart(customer);
+            foreach (var product in Generator.GetProducts(minProductCount, maxProductCount))
+            {
+                Thread.Sleep(customer.ProductFindTime * 1);
+                cart.Add(product);
+            }
+
+            return cart;
         }
     }
 }

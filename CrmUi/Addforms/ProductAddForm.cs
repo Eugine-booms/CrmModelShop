@@ -18,7 +18,7 @@ namespace CrmUi
         }
         public ProductAddForm(Product product) : this()
         {
-            Product = product;
+            Product = product?? new Product() ;
         }
 
         private void ProductAddForm_Load(object sender, EventArgs e)

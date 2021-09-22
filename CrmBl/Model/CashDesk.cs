@@ -13,21 +13,20 @@ namespace CrmBl.Model
         public int Number { get; set; }
         public Seller Seller { get; set; }
         public Queue<Cart> QueueCarts { get; set; }
-
         private int maxQueueLenght = 10;
-
-      
-
+        public event EventHandler<Check> ChekOut;
+        public event EventHandler<int> QueueCartsChanged;
         public int ExitCustomerCount { get; set; }
         public bool IsModel { get; set; } = true;
         public List<Check> Checks { get; private set; }
         public int CountCustomer => QueueCarts.Count;
+
         public int GetMaxQueueLenght()
         {
             return maxQueueLenght;
         }
 
-        public void SetMaxQueueLenght(int value)
+        public void SetMaxQueueLenght(int value=10)
         {
             maxQueueLenght = value;
         }
@@ -45,6 +44,7 @@ namespace CrmBl.Model
             if (QueueCarts.Count< GetMaxQueueLenght())
             {
                 QueueCarts.Enqueue(cart);
+                QueueCartsChanged?.Invoke(this, QueueCarts.Count);
                 return null;
             }
             else
@@ -53,15 +53,15 @@ namespace CrmBl.Model
                 return cart;
             }
         }
-        public decimal ModelWorkCashDesk()
+        public decimal ModelWorkCashDesk(bool isWork, CashDesk cd)
         {
             decimal Summ = 0;
             int checkId = 0;
-            while (true)
+            while (isWork)
             {
                 var nextCart = Dequeue();
                 if (nextCart == null) break;
-                Summ += SingleCustomerService(nextCart,(this.Number*1000000+ checkId++)).Summ;
+                Summ += SingleCustomerService(nextCart, cd).Summ;
             }
             return Summ;
         }
@@ -69,6 +69,7 @@ namespace CrmBl.Model
         {
             if (QueueCarts.Count>0)
             {
+                QueueCartsChanged?.Invoke(this, QueueCarts.Count-1);
                 return QueueCarts.Dequeue();
             }
             return null;
@@ -116,7 +117,7 @@ namespace CrmBl.Model
                 db.SaveChangesAsync();
             }
         }
-        public Check SingleCustomerService (Cart cart, int CheckId)
+        public Check SingleCustomerService (Cart cart, CashDesk cashDesk)
         {
             var check = new Check();
             if (cart !=null)
@@ -131,12 +132,16 @@ namespace CrmBl.Model
             }
             if(IsModel)
             {
-                check.CheckId = CheckId;
+                check.CheckId = cart.Customer.CustomerId+cashDesk.Number*100000;
             }
             SaveDb(new List<Check>() { check });
+            ChekOut?.Invoke(this, check);
             Checks.Add(check);
             return check;
         }
-
+        public override string ToString()
+        {
+            return $"Касса № {Number}";
+        }
     }
 }

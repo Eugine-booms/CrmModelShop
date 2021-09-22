@@ -9,6 +9,14 @@ namespace CrmBl.Model
     public class Generator
     {
         Random rnd = new Random();
+
+        public Generator()
+        {
+            Products = new List<Product>();
+            Customers = new List<Customer>();
+            Sellers = new List<Seller>();
+        }
+
         //  public List<Sell> Sells { get; set; }
         //  public List<Check> Checks { get; set; }
         public List<Product> Products { get; set; }
@@ -23,11 +31,12 @@ namespace CrmBl.Model
                 var customer = new Customer()
                 {
                     Name = name,
-                    CustomerId = i
+                    CustomerId = i,
+                    ProductFindTime = rnd.Next(1,10)
                 };
                 resultList.Add(customer);
             }
-            Customers = resultList;
+            Customers.AddRange(resultList);
             return resultList;
         }
         public List<Customer> GetCustomers(int count)
@@ -92,7 +101,7 @@ namespace CrmBl.Model
                     Name = GetRndText(),
                     ProductId = i,
                     Count = rnd.Next(10, 1000),
-                    Price = (decimal)(rnd.Next(5, 100000) + rnd.NextDouble())
+                    Price = (decimal)(rnd.Next(5, 500) + rnd.NextDouble())
                 };
                 resultList.Add(product);
             }
@@ -113,8 +122,6 @@ namespace CrmBl.Model
         {
             return Guid.NewGuid().ToString().Substring(5, 10);
         }
-
-
 
     }
 }
