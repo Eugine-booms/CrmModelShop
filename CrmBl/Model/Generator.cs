@@ -8,21 +8,21 @@ namespace CrmBl.Model
 {
     public class Generator
     {
-        Random rnd = new Random();
+        public Random rnd = new Random();
 
         public Generator()
         {
-            Products = new List<Product>();
-            Customers = new List<Customer>();
-            Sellers = new List<Seller>();
+            //Products = new List<Product>();
+            //Customers = new List<Customer>();
+            //Sellers = new List<Seller>();
         }
 
         //  public List<Sell> Sells { get; set; }
         //  public List<Check> Checks { get; set; }
-        public List<Product> Products { get; set; }
-        public List<Customer> Customers { get; set; }
-        public List<Seller> Sellers { get; set; }
-        public List<Customer> GenerateNewCustomers(int count)
+      //  public List<Product> Products { get; set; }
+      //  public List<Customer> Customers { get; set; }
+      //  public List<Seller> Sellers { get; set; }
+        public List<Customer> GenerateNewCustomers(int count, int productMaxFindTime)
         {
             var resultList = new List<Customer>();
             for (int i = 0; i < count; i++)
@@ -32,31 +32,31 @@ namespace CrmBl.Model
                 {
                     Name = name,
                     CustomerId = i,
-                    ProductFindTime = rnd.Next(1,10)
+                    ProductFindTime = rnd.Next(0, productMaxFindTime)
                 };
                 resultList.Add(customer);
             }
-            Customers.AddRange(resultList);
+          //  Customers.AddRange(resultList);
             return resultList;
         }
-        public List<Customer> GetCustomers(int count)
-        {
-            if (Customers==null)
-            {
-                GenerateNewCustomers(count);
-            }
-            var result = new List<Customer>();
-            if (Customers.Count>=count)
-            {
-                result= Customers.Take(count).ToList();
-                Customers.RemoveRange(0,count);
-            }
-            else 
-            {
-                throw new ArgumentOutOfRangeException(nameof(Customers), "Пришло больше покупателей чем сгенерировано");
-            }
-            return result;
-        }
+        //public List<Customer> GetCustomers(int count)
+        //{
+        //    if (Customers==null)
+        //    {
+        //        GenerateNewCustomers(count);
+        //    }
+        //    var result = new List<Customer>();
+        //    if (Customers.Count>=count)
+        //    {
+        //        result= Customers.Take(count).ToList();
+        //        Customers.RemoveRange(0,count);
+        //    }
+        //    else 
+        //    {
+        //        throw new ArgumentOutOfRangeException(nameof(Customers), "Пришло больше покупателей чем сгенерировано");
+        //    }
+        //    return result;
+        //}
 
         public List<Seller> GenerateNewSellers(int count)
         {
@@ -71,25 +71,25 @@ namespace CrmBl.Model
                 };
                 resultList.Add(seller);
             }
-            Sellers = resultList;
+        //    Sellers = resultList;
             return resultList;
         }
-        public List<Product> GetProducts(int min, int max)
-        {
-            var result = new List<Product>();
-            var count = rnd.Next(min, max);
-            if (Products.Count > count)
-            {
-                result = Products.Take(count).ToList();
-                Products.RemoveRange(0, count);
-            }
-            else
-            {
-                result = Products.Take(Products.Count).ToList();
-                Products.RemoveRange(0, Products.Count);
-            }
-            return result;
-        }
+        //public List<Product> GetProducts(int min, int max)
+        //{
+        //    var result = new List<Product>();
+        //    var count = rnd.Next(min, max);
+        //    if (Products.Count > count)
+        //    {
+        //        result = Products.Take(count).ToList();
+        //        Products.RemoveRange(0, count);
+        //    }
+        //    else
+        //    {
+        //        result = Products.Take(Products.Count).ToList();
+        //        Products.RemoveRange(0, Products.Count);
+        //    }
+        //    return result;
+        //}
         public List<Product> GenerateNewProducts(int count)
         {
             var resultList = new List<Product>();
@@ -105,19 +105,19 @@ namespace CrmBl.Model
                 };
                 resultList.Add(product);
             }
-            Products = resultList;
+          //  Products = resultList;
             return resultList;
         }
-        public List<Product> GetRandomProducts(int min, int max)
-        {
-            var result = new List<Product>();
-            var count = rnd.Next(min, max);
-            for (int i = 0; i < count; i++)
-            {
-                result.Add(Products[rnd.Next(0, Products.Count - 1)]);
-            }
-            return result;
-        }
+        //public List<Product> GetRandomProducts(int min, int max)
+        //{
+        //    var result = new List<Product>();
+        //    var count = rnd.Next(min, max);
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        result.Add(Products[rnd.Next(0, Products.Count - 1)]);
+        //    }
+        //    return result;
+        //}
         private static string GetRndText()
         {
             return Guid.NewGuid().ToString().Substring(5, 10);

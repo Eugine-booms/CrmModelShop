@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,16 +10,18 @@ namespace CrmBl.Model
 {
     public class ShopComputerModel
     {
+        CancellationTokenSource tokenSource = new CancellationTokenSource();
+        
+        ConcurrentBag<Task> Tasks = new ConcurrentBag<Task>();
         public Generator Generator { get; }
         public List<CashDesk> CashDesks { get; set; }
-        public List<Cart> GoneBuyers { get; private set; }
         public Queue<Seller> Sellers { get; set; }
         public Queue<Cart> Carts { get; set; }
         bool IsWorking = false;
         public event EventHandler<int> CartsQueueChanged;
         public event EventHandler<int> BuyersGone;
-        public int CustomerSpeed { get; set; } = 100;
-        public int CashDeskSpeed { get; set; } = 100;
+        public int CustomerSpeedDelay { get; set; }
+        public int CashDeskSpeedDelay { get; set; }
         public int CashDeskCount { get; set; }
 
 
@@ -28,42 +31,65 @@ namespace CrmBl.Model
             this.Sellers = new Queue<Seller>();
             this.CashDesks = new List<CashDesk>();
             Carts = new Queue<Cart>();
-            Generator.GenerateNewProducts(productCount);
-            Generator.GenerateNewSellers(sellersCount);
-        }
+            AddSellersToModel(20);
+            
 
-        public void SeatsSellersAtCashDesks(int count)
+
+        }
+        public void GenerateCashDesk(int count)
         {
-            foreach (var seller in Generator.Sellers)
-            {
-                Sellers.Enqueue(seller);
-            }
             for (int i = 0; i < count; i++)
             {
                 CashDesks.Add(new CashDesk(i + 1, Sellers.Dequeue(), 10));
             }
         }
-
-        public void Start(int  CustomerComeInDelay = 1)
+        public void AddSellersToModel(int count)
         {
-            var rnd = new Random();
-            var serviceTimeRandom = rnd.NextDouble() * CashDeskSpeed*100;
-            SeatsSellersAtCashDesks(CashDeskCount);
+            var sellers = Generator.GenerateNewSellers(count);
+            foreach (var seller in sellers)
+            {
+                Sellers.Enqueue(seller);
+            }
+
+        }
+
+        public void Start()
+        {
+           // GenerateCashDesk(CashDeskCount);
             IsWorking = true;
-            var generate =Task.Run(()=>GenerateShoppingCarts(CustomerSpeed));
-            Thread.Sleep(500);
-            var Distribut = Task.Run(() => DistributesCustomerToCashDesk(Carts));
-            var cashDeskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c, (int)(serviceTimeRandom*10))));
+            var token = tokenSource.Token;
+            Tasks.Add(Task.Run(()=>GenerateShoppingCarts(CustomerSpeedDelay, CustomerSpeedDelay), token));
+            Thread.Sleep(100);
+            Tasks.Add(Task.Run(() => DistributesCustomerToCashDesk(Carts), token));
+            var cashDeskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c, CashDeskSpeedDelay, token),token));
             foreach (var task in cashDeskTasks)
             {
+                Tasks.Add(task);
                 task.Start();
             }
         }
-        public void Stop()
+        public async void Stop()
         {
             IsWorking = false;
+            foreach (var task in Tasks)
+            {
+                tokenSource.Cancel();
+                try
+                {
+                    await Task.WhenAll(Tasks.ToArray());
+                }
+                catch (OperationCanceledException)
+                {
+                    Console.WriteLine($"\n{nameof(OperationCanceledException)} thrown\n");
+                }
+                finally
+                {
+                    tokenSource.Dispose();
+                }
+            }
+
         }
-        private void CashDeskWork(CashDesk cashDesk, int serviceTime)
+        private void CashDeskWork(CashDesk cashDesk, int serviceTime, CancellationToken ct)
         {
             while (true)
             {
@@ -72,6 +98,12 @@ namespace CrmBl.Model
                     Thread.Sleep(serviceTime);
                     cashDesk.SingleCustomerService(cashDesk.Dequeue(), cashDesk);
                 }
+                //if (ct.IsCancellationRequested)
+                //{
+                //    Console.WriteLine("Task {0} was cancelled before it got started."
+                //                      );
+                //    ct.ThrowIfCancellationRequested();
+                //}
             }
         }
 
@@ -91,35 +123,33 @@ namespace CrmBl.Model
                     }
                 }
             }
-            GoneBuyers = goneBuyer;
         }
 
         private CashDesk GetMinCounterCashDesk()
         {
             return CashDesks.FirstOrDefault(cd => cd.CountCustomer == CashDesks.Min(c => c.CountCustomer));
         }
-        private void GenerateShoppingCarts(int customersCameInDelay)
+        private void GenerateShoppingCarts(int customersCameInDelay, int productMaxFindTime)
         {
             while (IsWorking)
             {
-
-                Carts.Enqueue(FormationShoppingCarts(10, 30));
+                Carts.Enqueue(FormationShoppingCarts(10, 30, productMaxFindTime));
                 CartsQueueChanged?.Invoke(this, Carts.Count);
                 Thread.Sleep(customersCameInDelay);
             }
         }
 
-        private Cart FormationShoppingCarts(int minProductCount = 10, int maxProductCount = 30)
+        private Cart FormationShoppingCarts(int minProductCount, int maxProductCount, int productMaxFindTime)
         {
-            Generator.GenerateNewCustomers(1);
-            var customer = (Customer)Generator.GetCustomers(1).First();
+            var customer = (Customer)Generator.GenerateNewCustomers(1, productMaxFindTime).First();
             var cart = new Cart(customer);
-            foreach (var product in Generator.GetProducts(minProductCount, maxProductCount))
+            var products = Generator.GenerateNewProducts(30);
+            var rnd = Generator.rnd.Next(minProductCount, maxProductCount);
+            foreach (var product in products.Take(rnd))
             {
-                Thread.Sleep(customer.ProductFindTime * 1);
+               // Thread.Sleep(customer.ProductFindTime * 1);
                 cart.Add(product);
             }
-
             return cart;
         }
     }

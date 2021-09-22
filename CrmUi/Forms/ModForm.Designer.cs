@@ -73,6 +73,11 @@ namespace CrmUi.Forms
             // numericUpDownCustomersCount
             // 
             this.numericUpDownCustomersCount.Location = new System.Drawing.Point(668, 12);
+            this.numericUpDownCustomersCount.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numericUpDownCustomersCount.Name = "numericUpDownCustomersCount";
             this.numericUpDownCustomersCount.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownCustomersCount.TabIndex = 2;

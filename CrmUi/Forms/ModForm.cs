@@ -27,7 +27,9 @@ namespace CrmUi.Forms
 
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
-            model.SeatsSellersAtCashDesks((int)numericUpDownCashDeskStartCount.Value);
+            model.GenerateCashDesk((int)numericUpDownCashDeskStartCount.Value);
+            model.CustomerSpeedDelay = (11 - (int)numericUpDownCustomerIncomingSpeed.Value)*100;
+            model.CashDeskSpeedDelay = (11 - (int)numericUpDownCashDeskSpeed.Value)*100;
             var cashDeskViewList = new List<CashDeskView>();
 
             for (int i = 0; i < model.CashDesks.Count; i++)
@@ -39,17 +41,22 @@ namespace CrmUi.Forms
                 this.Controls.Add(box.QueueCustomerSize);
                 Controls.Add(box.QueueBar);
             }
-            model.CartsQueueChanged += (s, eArgs) => numericUpDownCustomersCount.Invoke(
-                                    (Action)delegate
-                                    {
-                                        numericUpDownCustomersCount.Value = Convert.ToDecimal(eArgs);
-                                    });
+            model.CartsQueueChanged += Model_CartsQueueChanged;
             model.BuyersGone += (s, eArgs) => textBoxGone.Invoke((Action)delegate
             {
                 textBoxGone.Text = eArgs.ToString();
             });
 
 
+        }
+
+        private void Model_CartsQueueChanged(object sender, int e)
+        {
+            numericUpDownCustomersCount.Invoke(
+                                     (Action)delegate
+                                     {
+                                         numericUpDownCustomersCount.Value = Convert.ToDecimal(e);
+                                     });
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
@@ -69,12 +76,12 @@ namespace CrmUi.Forms
 
         private void numericUpDownCashDeskSpeed_ValueChanged(object sender, EventArgs e)
         {
-            model.CashDeskSpeed = (int)numericUpDownCashDeskSpeed.Value;
+       //     model.CashDeskSpeed = 10-(int)numericUpDownCashDeskSpeed.Value;
         }
 
         private void numericUpDownCustomerIncomingSpeed_ValueChanged(object sender, EventArgs e)
         {
-            model.CustomerSpeed = (int)numericUpDownCashDeskSpeed.Value;
+            
         }
 
         private void numericUpDownCashDeskStartCount_ValueChanged(object sender, EventArgs e)
