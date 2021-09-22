@@ -13,11 +13,8 @@ namespace CrmBl.Model
         public int Number { get; set; }
         public Seller Seller { get; set; }
         public Queue<Cart> QueueCarts { get; set; }
-
         private int maxQueueLenght = 10;
-
-      
-
+        public event EventHandler<Check> ChekOut;
         public int ExitCustomerCount { get; set; }
         public bool IsModel { get; set; } = true;
         public List<Check> Checks { get; private set; }
@@ -53,15 +50,15 @@ namespace CrmBl.Model
                 return cart;
             }
         }
-        public decimal ModelWorkCashDesk()
+        public decimal ModelWorkCashDesk(bool isWork, CashDesk cd)
         {
             decimal Summ = 0;
             int checkId = 0;
-            while (true)
+            while (isWork)
             {
                 var nextCart = Dequeue();
                 if (nextCart == null) break;
-                Summ += SingleCustomerService(nextCart,(this.Number*1000000+ checkId++)).Summ;
+                Summ += SingleCustomerService(nextCart, cd).Summ;
             }
             return Summ;
         }
@@ -116,7 +113,7 @@ namespace CrmBl.Model
                 db.SaveChangesAsync();
             }
         }
-        public Check SingleCustomerService (Cart cart, int CheckId)
+        public Check SingleCustomerService (Cart cart, CashDesk cashDesk)
         {
             var check = new Check();
             if (cart !=null)
@@ -131,9 +128,10 @@ namespace CrmBl.Model
             }
             if(IsModel)
             {
-                check.CheckId = CheckId;
+                check.CheckId = cart.Customer.CustomerId+cashDesk.Number*100000;
             }
             SaveDb(new List<Check>() { check });
+            ChekOut?.Invoke(this, check);
             Checks.Add(check);
             return check;
         }
