@@ -11,10 +11,10 @@ namespace CrmUi.Forms
     class CashDeskView
     {
         public CashDesk CashDesk { get; set; }
-        public Label Label { get; set; }
+        public Label LabelCashDeskName { get; set; }
         public NumericUpDown CheckSumm { get; set; }
-        public NumericUpDown QueueCustomerSize { get; set; }
         public ProgressBar QueueBar { get; set; }
+        public Label LabelOutCustomersCount { get; set; }
 
         public CashDeskView()
         {
@@ -23,19 +23,20 @@ namespace CrmUi.Forms
         public CashDeskView(CashDesk cashDesk,int x, int y)
         {
             this.CashDesk = cashDesk;
-            Label = new Label();
+            LabelCashDeskName = new Label();
             CheckSumm = new NumericUpDown();
-            QueueCustomerSize = new NumericUpDown();
             QueueBar = new ProgressBar();
+            LabelOutCustomersCount = new Label();
+
             // 
-            // label1
+            // LabelCashDeskName
             // 
-            Label.AutoSize = true;
-            Label.Location = new System.Drawing.Point(x, y);
-            Label.Name = "label" + cashDesk;
-            Label.Size = new System.Drawing.Size(35, 13);
-            Label.TabIndex = cashDesk.Number;
-            Label.Text = cashDesk.ToString();
+            LabelCashDeskName.AutoSize = true;
+            LabelCashDeskName.Location = new System.Drawing.Point(x, y);
+            LabelCashDeskName.Name = "label" + cashDesk;
+            LabelCashDeskName.Size = new System.Drawing.Size(35, 13);
+            LabelCashDeskName.TabIndex = cashDesk.Number;
+            LabelCashDeskName.Text = cashDesk.ToString();
             // 
             // numericCheckSumm
             // 
@@ -46,16 +47,14 @@ namespace CrmUi.Forms
             CheckSumm.Maximum = decimal.MaxValue;
             CheckSumm.DecimalPlaces = 2;
             cashDesk.ChekOut += CashDesk_ChekOut;
-
             // 
             // numericQueueCustomerSize
             // 
-            QueueCustomerSize.Location = new System.Drawing.Point(x + 285, y - 2);
-            QueueCustomerSize.Name = "numericUpDown" + cashDesk.Number;
-            QueueCustomerSize.Size = new System.Drawing.Size(50, 20);
-            QueueCustomerSize.TabIndex = cashDesk.Number;
-            QueueCustomerSize.Maximum = 1000;
-             cashDesk.QueueCartsChanged += CashDesk_QueueCartsChanged;
+            LabelOutCustomersCount.AutoSize = true;
+            LabelOutCustomersCount.Location = new System.Drawing.Point(x + 285, y - 2);
+            LabelOutCustomersCount.Name = "label" + cashDesk+"OutPiople";
+            LabelOutCustomersCount.Size = new System.Drawing.Size(35, 13);
+            LabelOutCustomersCount.TabIndex = cashDesk.Number;
             // 
             // progressBar1
             // 
@@ -66,14 +65,16 @@ namespace CrmUi.Forms
             QueueBar.Minimum = 0;
             QueueBar.Style = ProgressBarStyle.Continuous;
             QueueBar.Maximum = cashDesk.GetMaxQueueLenght();
+            cashDesk.QueueCartsChanged += CashDesk_QueueCartsChanged;
         }
 
         private void CashDesk_QueueCartsChanged(object sender, int e)
         {
-            QueueCustomerSize.Invoke((Action)delegate
+            QueueBar.Invoke((Action)delegate
             {
-                QueueCustomerSize.Value = e;
                 QueueBar.Value = e;
+                LabelOutCustomersCount.Text=CashDesk.ExitCustomerCount.ToString();
+                
             });
         }
 

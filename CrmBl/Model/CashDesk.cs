@@ -13,7 +13,7 @@ namespace CrmBl.Model
         public int Number { get; set; }
         public Seller Seller { get; set; }
         public Queue<Cart> QueueCarts { get; set; }
-        private int maxQueueLenght = 10;
+        public int maxQueueLenght { get; set; }
         public event EventHandler<Check> ChekOut;
         public event EventHandler<int> QueueCartsChanged;
         public int ExitCustomerCount { get; set; }
@@ -31,7 +31,7 @@ namespace CrmBl.Model
             maxQueueLenght = value;
         }
 
-        public CashDesk(int number, Seller seller, int maxQueueLenght)
+        public CashDesk(int number, Seller seller, int maxQueueLenght=10)
         {
             Number = number;
             Seller = seller ?? throw new ArgumentNullException(nameof(seller));
@@ -56,7 +56,6 @@ namespace CrmBl.Model
         public decimal ModelWorkCashDesk(bool isWork, CashDesk cd)
         {
             decimal Summ = 0;
-            int checkId = 0;
             while (isWork)
             {
                 var nextCart = Dequeue();
@@ -78,8 +77,10 @@ namespace CrmBl.Model
         {
             if (product.Count>0)
             {
-                var sell = new Sell();
-                sell.Product = product;
+                var sell = new Sell
+                {
+                    Product = product
+                };
                 product.Count--;
                 sell.ProductId = product.ProductId;
                 return sell;

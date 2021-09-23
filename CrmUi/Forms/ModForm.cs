@@ -28,26 +28,20 @@ namespace CrmUi.Forms
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
             model.GenerateCashDesk((int)numericUpDownCashDeskStartCount.Value);
-            model.CustomerSpeedDelay = (11 - (int)numericUpDownCustomerIncomingSpeed.Value)*100;
-            model.CashDeskSpeedDelay = (11 - (int)numericUpDownCashDeskSpeed.Value)*100;
             var cashDeskViewList = new List<CashDeskView>();
 
             for (int i = 0; i < model.CashDesks.Count; i++)
             {
                 var box = new CashDeskView(model.CashDesks[i], 10, i * 26 + 26);
                 cashDeskViewList.Add(box);
-                this.Controls.Add(box.Label);
+                this.Controls.Add(box.LabelCashDeskName);
                 this.Controls.Add(box.CheckSumm);
-                this.Controls.Add(box.QueueCustomerSize);
+                this.Controls.Add(box.LabelOutCustomersCount);
+                
                 Controls.Add(box.QueueBar);
             }
             model.CartsQueueChanged += Model_CartsQueueChanged;
-            model.BuyersGone += (s, eArgs) => textBoxGone.Invoke((Action)delegate
-            {
-                textBoxGone.Text = eArgs.ToString();
-            });
-
-
+            buttonStart.Enabled = true;
         }
 
         private void Model_CartsQueueChanged(object sender, int e)
@@ -76,12 +70,12 @@ namespace CrmUi.Forms
 
         private void numericUpDownCashDeskSpeed_ValueChanged(object sender, EventArgs e)
         {
-       //     model.CashDeskSpeed = 10-(int)numericUpDownCashDeskSpeed.Value;
+            model.CashDeskSpeedDelay = (11-(int)numericUpDownCashDeskSpeed.Value)*1000;
         }
 
         private void numericUpDownCustomerIncomingSpeed_ValueChanged(object sender, EventArgs e)
         {
-            
+            model.CustomerSpeedDelay= (11 - (int)numericUpDownCustomerIncomingSpeed.Value) * 1000;
         }
 
         private void numericUpDownCashDeskStartCount_ValueChanged(object sender, EventArgs e)

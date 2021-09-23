@@ -33,8 +33,6 @@ namespace CrmUi.Forms
             this.buttonStart = new System.Windows.Forms.Button();
             this.numericUpDownCustomersCount = new System.Windows.Forms.NumericUpDown();
             this.labelCustomersCount = new System.Windows.Forms.Label();
-            this.textBoxGone = new System.Windows.Forms.TextBox();
-            this.labelGone = new System.Windows.Forms.Label();
             this.buttonStop = new System.Windows.Forms.Button();
             this.labelSumm = new System.Windows.Forms.Label();
             this.labelQueue = new System.Windows.Forms.Label();
@@ -44,6 +42,7 @@ namespace CrmUi.Forms
             this.numericUpDownCustomerIncomingSpeed = new System.Windows.Forms.NumericUpDown();
             this.labelCustomerIncamingSpeed = new System.Windows.Forms.Label();
             this.labelCashDeskSpeed = new System.Windows.Forms.Label();
+            this.labelOutPiopleCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCustomersCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCashDeskStartCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCashDeskSpeed)).BeginInit();
@@ -62,6 +61,7 @@ namespace CrmUi.Forms
             // 
             // buttonStart
             // 
+            this.buttonStart.Enabled = false;
             this.buttonStart.Location = new System.Drawing.Point(610, 415);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
@@ -91,22 +91,6 @@ namespace CrmUi.Forms
             this.labelCustomersCount.TabIndex = 3;
             this.labelCustomersCount.Text = "Покупателей";
             // 
-            // textBoxGone
-            // 
-            this.textBoxGone.Location = new System.Drawing.Point(668, 38);
-            this.textBoxGone.Name = "textBoxGone";
-            this.textBoxGone.Size = new System.Drawing.Size(100, 20);
-            this.textBoxGone.TabIndex = 4;
-            // 
-            // labelGone
-            // 
-            this.labelGone.AutoSize = true;
-            this.labelGone.Location = new System.Drawing.Point(569, 41);
-            this.labelGone.Name = "labelGone";
-            this.labelGone.Size = new System.Drawing.Size(101, 13);
-            this.labelGone.TabIndex = 5;
-            this.labelGone.Text = "Покупателей ушло";
-            // 
             // buttonStop
             // 
             this.buttonStop.Location = new System.Drawing.Point(713, 415);
@@ -129,7 +113,7 @@ namespace CrmUi.Forms
             // labelQueue
             // 
             this.labelQueue.AutoSize = true;
-            this.labelQueue.Location = new System.Drawing.Point(309, 9);
+            this.labelQueue.Location = new System.Drawing.Point(384, 9);
             this.labelQueue.Name = "labelQueue";
             this.labelQueue.Size = new System.Drawing.Size(50, 13);
             this.labelQueue.TabIndex = 8;
@@ -201,11 +185,21 @@ namespace CrmUi.Forms
             this.labelCashDeskSpeed.TabIndex = 14;
             this.labelCashDeskSpeed.Text = "Скорость работы касс";
             // 
+            // labelOutPiopleCount
+            // 
+            this.labelOutPiopleCount.AutoSize = true;
+            this.labelOutPiopleCount.Location = new System.Drawing.Point(241, 8);
+            this.labelOutPiopleCount.Name = "labelOutPiopleCount";
+            this.labelOutPiopleCount.Size = new System.Drawing.Size(58, 13);
+            this.labelOutPiopleCount.TabIndex = 15;
+            this.labelOutPiopleCount.Text = "Ушло чел.";
+            // 
             // ModForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelOutPiopleCount);
             this.Controls.Add(this.labelCashDeskSpeed);
             this.Controls.Add(this.labelCustomerIncamingSpeed);
             this.Controls.Add(this.numericUpDownCustomerIncomingSpeed);
@@ -215,8 +209,6 @@ namespace CrmUi.Forms
             this.Controls.Add(this.labelQueue);
             this.Controls.Add(this.labelSumm);
             this.Controls.Add(this.buttonStop);
-            this.Controls.Add(this.labelGone);
-            this.Controls.Add(this.textBoxGone);
             this.Controls.Add(this.labelCustomersCount);
             this.Controls.Add(this.numericUpDownCustomersCount);
             this.Controls.Add(this.buttonStart);
@@ -240,8 +232,6 @@ namespace CrmUi.Forms
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.NumericUpDown numericUpDownCustomersCount;
         private System.Windows.Forms.Label labelCustomersCount;
-        private System.Windows.Forms.TextBox textBoxGone;
-        private System.Windows.Forms.Label labelGone;
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Label labelSumm;
         private System.Windows.Forms.Label labelQueue;
@@ -251,6 +241,7 @@ namespace CrmUi.Forms
         private System.Windows.Forms.NumericUpDown numericUpDownCustomerIncomingSpeed;
         private System.Windows.Forms.Label labelCustomerIncamingSpeed;
         private System.Windows.Forms.Label labelCashDeskSpeed;
+        private System.Windows.Forms.Label labelOutPiopleCount;
         //private System.Windows.Forms.Label label1;
         //private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
