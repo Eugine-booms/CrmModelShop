@@ -14,10 +14,12 @@ namespace CrmUi.Forms
     public partial class ModForm : Form
     {
         ShopComputerModel model;
+        List<CashDeskView> cashDeskViewList;
         public ModForm()
         {
             InitializeComponent();
             model = new ShopComputerModel();
+            cashDeskViewList = new List<CashDeskView>();
         }
 
         private void ModForm_Load(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace CrmUi.Forms
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
             model.GenerateCashDesk((int)numericUpDownCashDeskStartCount.Value);
-            var cashDeskViewList = new List<CashDeskView>();
+            
 
             for (int i = 0; i < model.CashDesks.Count; i++)
             {
@@ -37,20 +39,10 @@ namespace CrmUi.Forms
                 this.Controls.Add(box.LabelCashDeskName);
                 this.Controls.Add(box.CheckSumm);
                 this.Controls.Add(box.LabelOutCustomersCount);
-                
                 Controls.Add(box.QueueBar);
             }
-            model.CartsQueueChanged += Model_CartsQueueChanged;
+           
             buttonStart.Enabled = true;
-        }
-
-        private void Model_CartsQueueChanged(object sender, int e)
-        {
-            numericUpDownCustomersCount.Invoke(
-                                     (Action)delegate
-                                     {
-                                         numericUpDownCustomersCount.Value = Convert.ToDecimal(e);
-                                     });
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
@@ -65,6 +57,11 @@ namespace CrmUi.Forms
 
         private void ModForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            foreach (var view in cashDeskViewList)
+            {
+                view.CashDesk.ChekOut -= view.CashDesk_ChekOut;
+                view.CashDesk.QueueCartsChanged -= view.CashDesk_QueueCartsChanged;
+            }
             model.Stop();
         }
 

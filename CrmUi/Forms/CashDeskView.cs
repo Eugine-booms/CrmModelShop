@@ -68,7 +68,7 @@ namespace CrmUi.Forms
             cashDesk.QueueCartsChanged += CashDesk_QueueCartsChanged;
         }
 
-        private void CashDesk_QueueCartsChanged(object sender, int e)
+        public void CashDesk_QueueCartsChanged(object sender, int e)
         {
             QueueBar.Invoke((Action)delegate
             {
@@ -78,7 +78,7 @@ namespace CrmUi.Forms
             });
         }
 
-        private void CashDesk_ChekOut(object sender, Check e)
+        public void CashDesk_ChekOut(object sender, Check e)
         {
             CheckSumm.Invoke((Action) delegate 
             { 
