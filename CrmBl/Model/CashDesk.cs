@@ -9,11 +9,11 @@ namespace CrmBl.Model
 {
     public class CashDesk
     {
-        readonly CrmContext db = new CrmContext();
+        private CrmContext db;
         public int Number { get; set; }
         public Seller Seller { get; set; }
         public Queue<Cart> QueueCarts { get; set; }
-        public int maxQueueLenght { get; set; }
+        private int maxQueueLenght = 10;
         public event EventHandler<Check> ChekOut;
         public event EventHandler<int> QueueCartsChanged;
         public int ExitCustomerCount { get; set; }
@@ -26,22 +26,23 @@ namespace CrmBl.Model
             return maxQueueLenght;
         }
 
-        public void SetMaxQueueLenght(int value=10)
+        public void SetMaxQueueLenght(int value = 10)
         {
             maxQueueLenght = value;
         }
 
-        public CashDesk(int number, Seller seller, int maxQueueLenght=10)
+        public CashDesk( int number, Seller seller, int maxQueueLenght, CrmContext db)
         {
+            this.db = db ?? new CrmContext();
             Number = number;
             Seller = seller ?? throw new ArgumentNullException(nameof(seller));
             QueueCarts = new Queue<Cart>();
             Checks = new List<Check>();
             this.maxQueueLenght = maxQueueLenght;
         }
-        public Cart Enqueue (Cart cart)
+        public Cart Enqueue(Cart cart)
         {
-            if (QueueCarts.Count< GetMaxQueueLenght())
+            if (QueueCarts.Count < GetMaxQueueLenght())
             {
                 QueueCarts.Enqueue(cart);
                 QueueCartsChanged?.Invoke(this, QueueCarts.Count);
@@ -60,22 +61,22 @@ namespace CrmBl.Model
             {
                 var nextCart = Dequeue();
                 if (nextCart == null) break;
-                Summ += SingleCustomerService(nextCart, cd).Summ;
+                Summ += SingleCustomerService(nextCart).Summ;
             }
             return Summ;
         }
         public Cart Dequeue()
         {
-            if (QueueCarts.Count>0)
+            if (QueueCarts.Count > 0)
             {
-                QueueCartsChanged?.Invoke(this, QueueCarts.Count-1);
+                QueueCartsChanged?.Invoke(this, QueueCarts.Count - 1);
                 return QueueCarts.Dequeue();
             }
             return null;
         }
         private Sell ChangesNumberItems(Product product)
         {
-            if (product.Count>0)
+            if (product.Count > 0)
             {
                 var sell = new Sell
                 {
@@ -95,47 +96,62 @@ namespace CrmBl.Model
             foreach (var product in products)
             {
                 var sell = ChangesNumberItems(product);
-                if (sell!=null)
+                if (sell != null)
                 {
                     if (IsModel)
                     {
                         sell.SellId = i++;
+                        sell.CheckId = check.CheckId;
                     }
                     sell.Check = check;
-                    sell.CheckId = check.CheckId;
                     check.Summ += product.Price;
                     sells.Add(sell);
                 }
             }
-            SaveDb(sells);
+
+          //  SaveDbSels(sells);
             return sells;
         }
-        private void SaveDb <T>(List<T> data) where T:class
+        private void SaveDbSels(List<Sell> data)
         {
             if (!IsModel)
             {
-                db.Set(typeof(T)).AddRange(data);
-                db.SaveChangesAsync();
+
+                //db.Sells.AddRange(data);
+                //db.SaveChanges();
             }
         }
-        public Check SingleCustomerService (Cart cart, CashDesk cashDesk)
+        private void SaveDbChek(Check chek)
+        {
+            if (!IsModel)
+            {
+                db.Checks.Add(chek);
+                db.SaveChanges();
+            }
+        }
+        public Check SingleCustomerService(Cart cart)
         {
             var check = new Check();
-            if (cart !=null)
+            if (cart != null)
             {
+                
                 check.Created = DateTime.Now;
-                check.CustomerId = cart.Customer.CustomerId;
                 check.Customer = cart.Customer;
-                check.SellerId = Seller.SellerId;
                 check.Seller = Seller;
                 var sells = Sell(cart, check);
-                check.Sells = sells;
+                if (IsModel)
+                {
+                    check.CustomerId = cart.Customer.CustomerId;
+                    check.SellerId = Seller.SellerId;
+                    check.Sells = sells;
+                }
+
             }
-            if(IsModel)
+            if (IsModel)
             {
-                check.CheckId = cart.Customer.CustomerId+cashDesk.Number*100000;
+                check.CheckId = cart.Customer.CustomerId + this.Number * 100000;
             }
-            SaveDb(new List<Check>() { check });
+            SaveDbChek(check);
             ChekOut?.Invoke(this, check);
             Checks.Add(check);
             return check;

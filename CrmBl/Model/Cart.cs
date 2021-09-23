@@ -18,6 +18,10 @@ namespace CrmBl.Model
             Customer = customer ?? throw new ArgumentNullException(nameof(customer));
             Products = new Dictionary<Product, int>();
         }
+        public decimal ReturnSumProduct()
+        {
+            return GetAllProduct().Sum(p => p.Price);
+        }
         public void Add(Product product)
         {
             

@@ -63,11 +63,11 @@
       <DependentUpon>BaseAddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CashDeskView.cs" />
-    <Compile Include="Forms\Catalog.cs">
+    <Compile Include="Forms\CatalogForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Catalog.Designer.cs">
-      <DependentUpon>Catalog.cs</DependentUpon>
+    <Compile Include="Forms\CatalogForm.Designer.cs">
+      <DependentUpon>CatalogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Addforms\CustomerAddForm.cs">
       <SubType>Form</SubType>
@@ -75,11 +75,17 @@
     <Compile Include="Addforms\CustomerAddForm.Designer.cs">
       <DependentUpon>CustomerAddForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Main.cs">
+    <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Addforms\ProductAddForm.cs">
       <SubType>Form</SubType>
@@ -104,14 +110,17 @@
     <EmbeddedResource Include="Addforms\BaseAddForm.resx">
       <DependentUpon>BaseAddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Catalog.resx">
-      <DependentUpon>Catalog.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CatalogForm.resx">
+      <DependentUpon>CatalogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Addforms\CustomerAddForm.resx">
       <DependentUpon>CustomerAddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Addforms\ProductAddForm.resx">
       <DependentUpon>ProductAddForm.cs</DependentUpon>

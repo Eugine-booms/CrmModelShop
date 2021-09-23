@@ -39,7 +39,7 @@ namespace CrmBl.Model
         {
             for (int i = 0; i < count; i++)
             {
-                CashDesks.Add(new CashDesk(i + 1, Sellers.Dequeue(), maxQueueLenght));
+                CashDesks.Add(new CashDesk(i + 1, Sellers.Dequeue(), maxQueueLenght, null));
             }
         }
         public void AddSellersToModel(int count)
@@ -94,7 +94,7 @@ namespace CrmBl.Model
                 if (cashDesk.CountCustomer > 0)
                 {
                     Thread.Sleep(CashDeskSpeedDelay);
-                    cashDesk.SingleCustomerService(cashDesk.Dequeue(), cashDesk);
+                    cashDesk.SingleCustomerService(cashDesk.Dequeue());
                 }
             }
         }

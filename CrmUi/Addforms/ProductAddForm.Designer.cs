@@ -41,6 +41,8 @@ namespace CrmUi
             // 
             this.textBoxName.Location = new System.Drawing.Point(124, 34);
             this.textBoxName.Size = new System.Drawing.Size(213, 20);
+            this.textBoxName.TabIndex = 1;
+
             // 
             // labelPrice
             // 
@@ -74,7 +76,7 @@ namespace CrmUi
             0});
             this.numericUpDownPrice.Name = "numericUpDownPrice";
             this.numericUpDownPrice.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownPrice.TabIndex = 7;
+            this.numericUpDownPrice.TabIndex = 2;
             this.numericUpDownPrice.ThousandsSeparator = true;
             // 
             // numericUpDownCount
@@ -89,7 +91,7 @@ namespace CrmUi
             0});
             this.numericUpDownCount.Name = "numericUpDownCount";
             this.numericUpDownCount.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownCount.TabIndex = 8;
+            this.numericUpDownCount.TabIndex = 3;
             // 
             // ProductAddForm
             // 

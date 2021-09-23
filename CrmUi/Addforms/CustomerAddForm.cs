@@ -35,6 +35,7 @@ namespace CrmUi
             var customer = this.Customer ?? new Customer();
             customer.Name = textBoxName.Text;
             this.Customer = customer;
+            DialogResult = DialogResult.OK;
             Close();
         }
     }
