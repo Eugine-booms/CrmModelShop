@@ -9,7 +9,7 @@ namespace CrmBl.Model
 {
     public class CrmContext : DbContext
     {
-        public CrmContext() : base("CrmConection")
+        public CrmContext() : base("CrmConectionLocal")
         {
         }
 
