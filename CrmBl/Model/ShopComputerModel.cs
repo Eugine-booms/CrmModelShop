@@ -69,22 +69,22 @@ namespace CrmBl.Model
         public async void Stop()
         {
             IsWorking = false;
-            foreach (var task in Tasks)
-            {
-                tokenSource.Cancel();
-                try
-                {
-                    await Task.WhenAll(Tasks.ToArray());
-                }
-                catch (OperationCanceledException)
-                {
-                    Console.WriteLine($"\n{nameof(OperationCanceledException)} thrown\n");
-                }
-                finally
-                {
-                    tokenSource.Dispose();
-                }
-            }
+            //foreach (var task in Tasks)
+            //{
+            //    tokenSource.Cancel();
+            //    try
+            //    {
+            //        await Task.WhenAll(Tasks.ToArray());
+            //    }
+            //    catch (OperationCanceledException)
+            //    {
+            //        Console.WriteLine($"\n{nameof(OperationCanceledException)} thrown\n");
+            //    }
+            //    finally
+            //    {
+            //        tokenSource.Dispose();
+            //    }
+            //}
 
         }
         private void CashDeskWork(CashDesk cashDesk)
