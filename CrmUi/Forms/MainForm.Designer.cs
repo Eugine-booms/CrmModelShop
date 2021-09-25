@@ -59,7 +59,6 @@ namespace CrmUi
             this.menuStrip1.Size = new System.Drawing.Size(636, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // entitiesToolStripMenuItem
             // 
@@ -141,7 +140,6 @@ namespace CrmUi
             this.listBoxProducts.Name = "listBoxProducts";
             this.listBoxProducts.Size = new System.Drawing.Size(171, 407);
             this.listBoxProducts.TabIndex = 1;
-            this.listBoxProducts.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBoxProducts.DoubleClick += new System.EventHandler(this.listBoxProducts_DoubleClick);
             // 
             // listBoxCart
@@ -151,6 +149,7 @@ namespace CrmUi
             this.listBoxCart.Name = "listBoxCart";
             this.listBoxCart.Size = new System.Drawing.Size(188, 329);
             this.listBoxCart.TabIndex = 2;
+            this.listBoxCart.DoubleClick += new System.EventHandler(this.listBoxCart_DoubleClick);
             // 
             // labelSumm
             // 

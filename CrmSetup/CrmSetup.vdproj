@@ -51,20 +51,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5BEBC3AF20673679812945BA19CB2B73"
+        "MsmKey" = "8:_43905327F2CFB531023CA479FFB11496"
         "OwnerKey" = "8:_2D30A7487195466FB3FB2D0F25D81823"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8F69CBDEC2B94B87A3A53043DB731D5A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A7AAD2019D7443D391B05E5AE0F84E82"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_F2C112A8FB16E89EDF911FCBA1303035"
-        "OwnerKey" = "8:_5BEBC3AF20673679812945BA19CB2B73"
+        "OwnerKey" = "8:_43905327F2CFB531023CA479FFB11496"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -94,7 +82,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3F841E2C41FBE6774634328927562D5B"
+        "OwnerKey" = "8:_09AFDC7C9EBE4661A637A3AE47E2A06E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -106,13 +94,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5BEBC3AF20673679812945BA19CB2B73"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_09AFDC7C9EBE4661A637A3AE47E2A06E"
+        "OwnerKey" = "8:_43905327F2CFB531023CA479FFB11496"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -125,6 +107,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F2C112A8FB16E89EDF911FCBA1303035"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3F841E2C41FBE6774634328927562D5B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -145,6 +133,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -161,6 +157,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -252,14 +256,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5BEBC3AF20673679812945BA19CB2B73"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_43905327F2CFB531023CA479FFB11496"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:CrmBl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5BEBC3AF20673679812945BA19CB2B73"
+                    "_43905327F2CFB531023CA479FFB11496"
                     {
                     "Name" = "8:CrmBl.dll"
                     "Attributes" = "3:512"
@@ -281,46 +285,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F69CBDEC2B94B87A3A53043DB731D5A"
-            {
-            "SourcePath" = "8:..\\CrmBase.mdf"
-            "TargetName" = "8:CrmBase.mdf"
-            "Tag" = "8:"
-            "Folder" = "8:_7BC6300DC6964C8789F38525DE442669"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7AAD2019D7443D391B05E5AE0F84E82"
-            {
-            "SourcePath" = "8:..\\CrmBase_log.ldf"
-            "TargetName" = "8:CrmBase_log.ldf"
-            "Tag" = "8:"
-            "Folder" = "8:_7BC6300DC6964C8789F38525DE442669"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F2C112A8FB16E89EDF911FCBA1303035"
@@ -932,7 +896,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_09AFDC7C9EBE4661A637A3AE47E2A06E"
             {
-            "SourcePath" = "8:..\\CrmBl\\obj\\Debug\\CrmBl.dll"
+            "SourcePath" = "8:..\\CrmBl\\obj\\Release\\CrmBl.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7BC6300DC6964C8789F38525DE442669"
@@ -960,7 +924,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2D30A7487195466FB3FB2D0F25D81823"
             {
-            "SourcePath" = "8:..\\CrmUi\\obj\\Debug\\CrmUi.exe"
+            "SourcePath" = "8:..\\CrmUi\\obj\\Release\\CrmUi.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7BC6300DC6964C8789F38525DE442669"

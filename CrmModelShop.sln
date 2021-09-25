@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmUi", "CrmUi\CrmUi.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmBlTests", "CrmBlTests\CrmBlTests.csproj", "{A23B752B-AE21-4A9A-A59D-5FA5AC535723}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CrmSetup", "CrmSetup\CrmSetup.vdproj", "{C28F9D8F-29DB-49E1-89EF-B3D01084D114}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,8 +27,6 @@ Global
 		{A23B752B-AE21-4A9A-A59D-5FA5AC535723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A23B752B-AE21-4A9A-A59D-5FA5AC535723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A23B752B-AE21-4A9A-A59D-5FA5AC535723}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C28F9D8F-29DB-49E1-89EF-B3D01084D114}.Debug|Any CPU.ActiveCfg = Debug
-		{C28F9D8F-29DB-49E1-89EF-B3D01084D114}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

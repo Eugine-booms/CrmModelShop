@@ -58,9 +58,7 @@ namespace CrmUi
         {
             var catalogCustomers = new Catalog<Customer>(db, db.Customers);
             catalogCustomers.Show();
-            //OpenDialogAsync(sender, e);
         }
-
         private void CheckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var catalogChecks = new Catalog<Check>(db, db.Checks);
@@ -100,11 +98,6 @@ namespace CrmUi
         {
             var modForm = new ModForm();
             modForm.Show();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void listBoxProducts_DoubleClick(object sender, EventArgs e)
@@ -168,10 +161,14 @@ namespace CrmUi
             }
         }
 
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void listBoxCart_DoubleClick(object sender, EventArgs e)
         {
+            if (listBoxCart.SelectedItem is Product product)
+            {
+                cart.Remove(product);
+                UpdateLists();
 
+            }
         }
     }
 
