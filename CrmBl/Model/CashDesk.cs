@@ -18,7 +18,7 @@ namespace CrmBl.Model
         public event EventHandler<int> QueueCartsChanged;
         public int ExitCustomerCount { get; set; }
         public bool IsModel { get; set; } = true;
-        public List<Check> Checks { get; private set; }
+       // public List<Check> Checks { get; private set; }
         public int CountCustomer => QueueCarts.Count;
 
         public int GetMaxQueueLenght()
@@ -37,7 +37,7 @@ namespace CrmBl.Model
             Number = number;
             Seller = seller ?? throw new ArgumentNullException(nameof(seller));
             QueueCarts = new Queue<Cart>();
-            Checks = new List<Check>();
+     //       Checks = new List<Check>();
             this.maxQueueLenght = maxQueueLenght;
         }
         public Cart Enqueue(Cart cart)
@@ -109,7 +109,7 @@ namespace CrmBl.Model
                 }
             }
 
-          //  SaveDbSels(sells);
+           SaveDbSels(sells);
             return sells;
         }
         private void SaveDbSels(List<Sell> data)
@@ -117,8 +117,8 @@ namespace CrmBl.Model
             if (!IsModel)
             {
 
-                //db.Sells.AddRange(data);
-                //db.SaveChanges();
+                db.Sells.AddRange(data);
+               // db.SaveChanges();
             }
         }
         private void SaveDbChek(Check chek)
@@ -138,6 +138,7 @@ namespace CrmBl.Model
                 check.Created = DateTime.Now;
                 check.Customer = cart.Customer;
                 check.Seller = Seller;
+               
                 var sells = Sell(cart, check);
                 if (IsModel)
                 {
@@ -153,7 +154,6 @@ namespace CrmBl.Model
             }
             SaveDbChek(check);
             ChekOut?.Invoke(this, check);
-            Checks.Add(check);
             return check;
         }
         public override string ToString()

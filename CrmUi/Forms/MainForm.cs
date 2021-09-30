@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CrmBl.Model;
@@ -37,7 +32,7 @@ namespace CrmUi
                     listBoxProducts.Items.AddRange(db.Products.ToArray());
                     listBoxCart.Items.AddRange(cart.GetAllProduct().ToArray());
                 });
-                
+
             });
 
         }
@@ -58,7 +53,6 @@ namespace CrmUi
         {
             var catalogCustomers = new Catalog<Customer>(db, db.Customers);
             catalogCustomers.Show();
-            //OpenDialogAsync(sender, e);
         }
 
         private void CheckToolStripMenuItem_Click(object sender, EventArgs e)
@@ -109,15 +103,15 @@ namespace CrmUi
 
         private void listBoxProducts_DoubleClick(object sender, EventArgs e)
         {
-            if(listBoxProducts.SelectedItem is Product product)
+            if (listBoxProducts.SelectedItem is Product product)
             {
                 cart.Add(product);
                 UpdateLists();
             }
-            
-            
+
+
         }
-        private void UpdateLists ()
+        private void UpdateLists()
         {
             listBoxProducts.Items.Clear();
             listBoxProducts.Items.AddRange(db.Products.ToArray());
@@ -131,48 +125,69 @@ namespace CrmUi
             var loginForm = new LoginForm();
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                var user= db.Customers.FirstOrDefault(c=>c.Name.Equals(loginForm.Customer.Name));
+                var user = db.Customers.FirstOrDefault(c => c.Name.Equals(loginForm.Customer.Name));
                 if (user != null)
                 {
                     customer = user;
                     cart.Customer = customer;
                 }
-                else 
-                { 
+                else
+                {
                     var addCustomerForm = new CustomerAddForm(customer);
-                    if (addCustomerForm.ShowDialog()==DialogResult.OK)
+                    if (addCustomerForm.ShowDialog() == DialogResult.OK)
                     {
                         customer = addCustomerForm.Customer;
                         cart.Customer = customer;
                     }
                 }
-                linkLabel1.Text = "Здравствуй "+ customer.Name;
+                linkLabel1.Text = "Здравствуй " + customer.Name;
             }
         }
 
         private void buttonPay_Click(object sender, EventArgs e)
         {
-            if (customer.Name!=null)
+            if (customer.Name != null)
             {
                 cashDesk = new CashDesk(1, db.Sellers.FirstOrDefault(), 10, db);
                 cashDesk.IsModel = false;
                 cashDesk.Enqueue(cart);
-                var chek = cashDesk.SingleCustomerService(cart);
-                listBoxCart.Items.Clear();
+                var check = cashDesk.SingleCustomerService(cart);
+
+
                 cart = new Cart(customer);
+
+
+                CheckPrint(check);
+                listBoxCart.Items.Clear();
                 //TODO: Печать чека
             }
             else
             {
-                MessageBox.Show("Авторизуйтесь пожалуйста","Ошибка авторизации",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Авторизуйтесь пожалуйста", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void CheckPrint(Check check)
         {
-
+            textBoxCheck.Clear();
+            textBoxCheck.Text = "ООО Рога и копыта" + Environment.NewLine;
+            textBoxCheck.Text += "Чек "+check + Environment.NewLine;
+            textBoxCheck.Text += "Продавец: " + db.Sellers.Find(check.SellerId) + Environment.NewLine;
+            textBoxCheck.Text += "Покупатель: " + db.Customers.Find(check.CustomerId) + Environment.NewLine;
+            textBoxCheck.Text += "//////////////////////////" + Environment.NewLine;
+            var checkproducts = db.Sells
+                .Where(x => x.CheckId == check.CheckId)
+                .Select(s => s.ProductId)
+                .SelectMany(s => db.Products
+                                .Where(x => x.ProductId == s))
+                .ToList();
+            foreach (var item in checkproducts)
+            {
+                textBoxCheck.Text += item.ToString() + Environment.NewLine;
+            }
+            textBoxCheck.Text += "//////////////////////////" + Environment.NewLine;
+            textBoxCheck.Text += "Сумма: " + check.Summ + Environment.NewLine;
         }
-    }
 
+      
+    }
 }

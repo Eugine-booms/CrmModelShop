@@ -16,7 +16,7 @@ namespace CrmBl.Model.Tests
         {
             //arrange 
             var seller = new Seller() { Name = "boomsa" };
-            var cashDesk = new CashDesk(1, seller, 10);
+            var cashDesk = new CashDesk(1, seller, 10, new CrmContext());
             var customer1 = new Customer() { Name = "testuser1" };
             var customer2 = new Customer() { Name = "testuser2" };
             var cart1 = new Cart(customer1);
@@ -75,7 +75,7 @@ namespace CrmBl.Model.Tests
             var seller = new Seller() { Name = "boomsa", SellerId = 1 };
             var customer1 = new Customer() { Name = "testuser1", CustomerId = 1 };
             var cart1 = new Cart(customer1);
-            var cashDesk = new CashDesk(1, seller, 10);
+            var cashDesk = new CashDesk(1, seller, 10, new CrmContext());
             var product1 = new Product()
             {
                 Name = "Pr1",
@@ -99,7 +99,7 @@ namespace CrmBl.Model.Tests
             expectepSaleList.Add(product2);
             //act
             var ExpectepSaleList = new List<Product>();
-            var check = cashDesk.SingleCustomerService(cart1, cashDesk);
+            var check = cashDesk.SingleCustomerService(cart1);
             //Assert
             Assert.AreEqual(100001, check.CheckId);
             Assert.AreEqual("testuser1", check.Customer.Name);
@@ -120,7 +120,7 @@ namespace CrmBl.Model.Tests
         public void WorkTest()
         {
             var seller = new Seller() { Name = "boomsa" };
-            var cashDesk = new CashDesk(1, seller,10);
+            var cashDesk = new CashDesk(1, seller,10, new CrmContext());
             var customer1 = new Customer() { Name = "testuser1" };
             var customer2 = new Customer() { Name = "testuser2" };
             var cart1 = new Cart(customer1);

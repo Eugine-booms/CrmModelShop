@@ -20,7 +20,6 @@ namespace CrmBl.Model
         public Queue<Cart> Carts { get; set; }
         bool IsWorking = false;
         public event EventHandler<int> CartsQueueChanged;
-        public event EventHandler<int> BuyersGone;
         public int CustomerSpeedDelay { get; set; }
         public int CashDeskSpeedDelay { get; set; }
         public int ProductMaxFindTime { get; set; }
@@ -66,7 +65,7 @@ namespace CrmBl.Model
                 task.Start();
             }
         }
-        public async void Stop()
+        public void Stop()
         {
             IsWorking = false;
             //foreach (var task in Tasks)

@@ -43,12 +43,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -76,11 +77,6 @@
     </Compile>
     <Compile Include="Addforms\BaseAddForm.Designer.cs">
       <DependentUpon>BaseAddForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CrmBaseDataSet.Designer.cs">
-      <DependentUpon>CrmBaseDataSet.xsd</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Forms\CashDeskView.cs" />
     <Compile Include="Forms\CatalogForm.cs">
@@ -160,17 +156,6 @@
     <EmbeddedResource Include="Addforms\SellerAddForm.resx">
       <DependentUpon>SellerAddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="CrmBaseDataSet.xsc">
-      <DependentUpon>CrmBaseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="CrmBaseDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CrmBaseDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="CrmBaseDataSet.xss">
-      <DependentUpon>CrmBaseDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -190,15 +175,6 @@
       <Project>{f319ef9a-23dc-47cb-b956-978c9a2ecfbc}</Project>
       <Name>CrmBl</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CrmBase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CrmBase_log.ldf">
-      <DependentUpon>CrmBase.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

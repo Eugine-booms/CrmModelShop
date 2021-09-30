@@ -16,7 +16,7 @@ namespace CrmBl.Model
         }
         public override string ToString()
         {
-            return $"{SellerId}.{Name}";
+            return Name;
         }
     }
 }
