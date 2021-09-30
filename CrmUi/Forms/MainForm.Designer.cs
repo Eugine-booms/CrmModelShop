@@ -47,12 +47,12 @@ namespace CrmUi
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.textBoxCheck = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.labelProducts = new System.Windows.Forms.Label();
+            this.labelCart = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.labelCheck = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.labelProducts = new System.Windows.Forms.Label();
-            this.labelCart = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -71,10 +71,9 @@ namespace CrmUi
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.entitiesToolStripMenuItem,
             this.ModelToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(9, 9);
+            this.menuStrip1.Location = new System.Drawing.Point(7, 7);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(315, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(193, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -159,11 +158,9 @@ namespace CrmUi
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxProducts.BackColor = System.Drawing.SystemColors.Control;
             this.listBoxProducts.FormattingEnabled = true;
-            this.listBoxProducts.ItemHeight = 16;
-            this.listBoxProducts.Location = new System.Drawing.Point(4, 24);
-            this.listBoxProducts.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxProducts.Location = new System.Drawing.Point(3, 20);
             this.listBoxProducts.Name = "listBoxProducts";
-            this.listBoxProducts.Size = new System.Drawing.Size(162, 612);
+            this.listBoxProducts.Size = new System.Drawing.Size(121, 498);
             this.listBoxProducts.TabIndex = 1;
             this.listBoxProducts.DoubleClick += new System.EventHandler(this.listBoxProducts_DoubleClick);
             // 
@@ -174,11 +171,9 @@ namespace CrmUi
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxCart.BackColor = System.Drawing.SystemColors.Control;
             this.listBoxCart.FormattingEnabled = true;
-            this.listBoxCart.ItemHeight = 16;
-            this.listBoxCart.Location = new System.Drawing.Point(8, 24);
-            this.listBoxCart.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxCart.Location = new System.Drawing.Point(6, 20);
             this.listBoxCart.Name = "listBoxCart";
-            this.listBoxCart.Size = new System.Drawing.Size(316, 612);
+            this.listBoxCart.Size = new System.Drawing.Size(238, 498);
             this.listBoxCart.TabIndex = 2;
             // 
             // labelSumm
@@ -187,10 +182,9 @@ namespace CrmUi
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSumm.AutoSize = true;
             this.labelSumm.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelSumm.Location = new System.Drawing.Point(241, 650);
-            this.labelSumm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSumm.Location = new System.Drawing.Point(181, 528);
             this.labelSumm.Name = "labelSumm";
-            this.labelSumm.Size = new System.Drawing.Size(77, 16);
+            this.labelSumm.Size = new System.Drawing.Size(64, 13);
             this.labelSumm.TabIndex = 4;
             this.labelSumm.Text = "Итого: 0.00";
             this.labelSumm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -198,10 +192,9 @@ namespace CrmUi
             // buttonPay
             // 
             this.buttonPay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPay.Location = new System.Drawing.Point(674, 692);
-            this.buttonPay.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonPay.Location = new System.Drawing.Point(506, 562);
             this.buttonPay.Name = "buttonPay";
-            this.buttonPay.Size = new System.Drawing.Size(248, 34);
+            this.buttonPay.Size = new System.Drawing.Size(186, 28);
             this.buttonPay.TabIndex = 5;
             this.buttonPay.Text = "Оплатить";
             this.buttonPay.UseVisualStyleBackColor = true;
@@ -213,10 +206,9 @@ namespace CrmUi
             | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.linkLabel1.Location = new System.Drawing.Point(24, 648);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(18, 526);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(127, 16);
+            this.linkLabel1.Size = new System.Drawing.Size(99, 13);
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "здравствуй, гость";
@@ -227,12 +219,11 @@ namespace CrmUi
             this.textBoxCheck.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxCheck.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxCheck.Location = new System.Drawing.Point(9, 32);
-            this.textBoxCheck.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxCheck.Location = new System.Drawing.Point(7, 26);
             this.textBoxCheck.Multiline = true;
             this.textBoxCheck.Name = "textBoxCheck";
             this.textBoxCheck.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxCheck.Size = new System.Drawing.Size(245, 597);
+            this.textBoxCheck.Size = new System.Drawing.Size(185, 486);
             this.textBoxCheck.TabIndex = 7;
             this.textBoxCheck.TabStop = false;
             this.textBoxCheck.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -242,7 +233,8 @@ namespace CrmUi
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 38);
+            this.splitContainer1.Location = new System.Drawing.Point(9, 31);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -257,17 +249,43 @@ namespace CrmUi
             this.splitContainer1.Panel2.Controls.Add(this.listBoxCart);
             this.splitContainer1.Panel2.Controls.Add(this.labelSumm);
             this.splitContainer1.Panel2.Controls.Add(this.linkLabel1);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer1.Size = new System.Drawing.Size(512, 688);
-            this.splitContainer1.SplitterDistance = 170;
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.splitContainer1.Size = new System.Drawing.Size(384, 559);
+            this.splitContainer1.SplitterDistance = 127;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 8;
+            // 
+            // labelProducts
+            // 
+            this.labelProducts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelProducts.AutoSize = true;
+            this.labelProducts.Location = new System.Drawing.Point(18, 3);
+            this.labelProducts.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelProducts.Name = "labelProducts";
+            this.labelProducts.Size = new System.Drawing.Size(86, 13);
+            this.labelProducts.TabIndex = 2;
+            this.labelProducts.Text = "Наши продукты";
+            // 
+            // labelCart
+            // 
+            this.labelCart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCart.AutoSize = true;
+            this.labelCart.Location = new System.Drawing.Point(77, 3);
+            this.labelCart.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelCart.Name = "labelCart";
+            this.labelCart.Size = new System.Drawing.Size(111, 13);
+            this.labelCart.TabIndex = 3;
+            this.labelCart.Text = "Продукты в корзине";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1047, 17);
+            this.label1.Location = new System.Drawing.Point(785, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 16);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "label1";
             this.label1.Visible = false;
@@ -280,9 +298,10 @@ namespace CrmUi
             // labelCheck
             // 
             this.labelCheck.AutoSize = true;
-            this.labelCheck.Location = new System.Drawing.Point(90, 12);
+            this.labelCheck.Location = new System.Drawing.Point(68, 10);
+            this.labelCheck.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCheck.Name = "labelCheck";
-            this.labelCheck.Size = new System.Drawing.Size(32, 16);
+            this.labelCheck.Size = new System.Drawing.Size(27, 13);
             this.labelCheck.TabIndex = 10;
             this.labelCheck.Text = "Чек";
             // 
@@ -290,7 +309,8 @@ namespace CrmUi
             // 
             this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer2.Location = new System.Drawing.Point(530, 38);
+            this.splitContainer2.Location = new System.Drawing.Point(398, 31);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -301,45 +321,23 @@ namespace CrmUi
             // 
             this.splitContainer2.Panel2.Controls.Add(this.textBoxCheck);
             this.splitContainer2.Panel2.Controls.Add(this.labelCheck);
-            this.splitContainer2.Size = new System.Drawing.Size(393, 633);
-            this.splitContainer2.SplitterDistance = 131;
+            this.splitContainer2.Size = new System.Drawing.Size(295, 514);
+            this.splitContainer2.SplitterDistance = 98;
+            this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 11;
-            // 
-            // labelProducts
-            // 
-            this.labelProducts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelProducts.AutoSize = true;
-            this.labelProducts.Location = new System.Drawing.Point(24, 4);
-            this.labelProducts.Name = "labelProducts";
-            this.labelProducts.Size = new System.Drawing.Size(109, 16);
-            this.labelProducts.TabIndex = 2;
-            this.labelProducts.Text = "Наши продукты";
-            // 
-            // labelCart
-            // 
-            this.labelCart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCart.AutoSize = true;
-            this.labelCart.Location = new System.Drawing.Point(103, 4);
-            this.labelCart.Name = "labelCart";
-            this.labelCart.Size = new System.Drawing.Size(142, 16);
-            this.labelCart.TabIndex = 3;
-            this.labelCart.Text = "Продукты в корзине";
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(935, 751);
+            this.ClientSize = new System.Drawing.Size(701, 610);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.buttonPay);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Main";
             this.Text = "Магазинчик у Бумсы";
             this.Load += new System.EventHandler(this.Main_Load);
