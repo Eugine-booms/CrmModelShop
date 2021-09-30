@@ -159,7 +159,7 @@ namespace CrmUi
 
                 CheckPrint(check);
                 listBoxCart.Items.Clear();
-                //TODO: Печать чека
+                
             }
             else
             {
