@@ -96,11 +96,6 @@ namespace CrmUi
             modForm.Show();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void listBoxProducts_DoubleClick(object sender, EventArgs e)
         {
             if (listBoxProducts.SelectedItem is Product product)
@@ -170,7 +165,7 @@ namespace CrmUi
         {
             textBoxCheck.Clear();
             textBoxCheck.Text = "ООО Рога и копыта" + Environment.NewLine;
-            textBoxCheck.Text += "Чек "+check + Environment.NewLine;
+            textBoxCheck.Text += "Чек " + check + Environment.NewLine;
             textBoxCheck.Text += "Продавец: " + db.Sellers.Find(check.SellerId) + Environment.NewLine;
             textBoxCheck.Text += "Покупатель: " + db.Customers.Find(check.CustomerId) + Environment.NewLine;
             textBoxCheck.Text += "//////////////////////////" + Environment.NewLine;
@@ -188,6 +183,6 @@ namespace CrmUi
             textBoxCheck.Text += "Сумма: " + check.Summ + Environment.NewLine;
         }
 
-      
+
     }
 }

@@ -162,7 +162,6 @@ namespace CrmUi
             this.listBoxProducts.Name = "listBoxProducts";
             this.listBoxProducts.Size = new System.Drawing.Size(121, 498);
             this.listBoxProducts.TabIndex = 1;
-            this.listBoxProducts.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBoxProducts.DoubleClick += new System.EventHandler(this.listBoxProducts_DoubleClick);
             // 
             // listBoxCart
