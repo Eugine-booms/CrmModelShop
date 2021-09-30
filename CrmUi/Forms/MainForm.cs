@@ -14,8 +14,6 @@ namespace CrmUi
         Cart cart;
         Customer customer;
         CashDesk cashDesk;
-
-
         public Main()
         {
             InitializeComponent();
@@ -32,9 +30,7 @@ namespace CrmUi
                     listBoxProducts.Items.AddRange(db.Products.ToArray());
                     listBoxCart.Items.AddRange(cart.GetAllProduct().ToArray());
                 });
-
             });
-
         }
         private void ProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -42,19 +38,16 @@ namespace CrmUi
             catalogProducts.Show();
             UpdateLists();
         }
-
         private void SellerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var catalogSellers = new Catalog<Seller>(db, db.Sellers);
             catalogSellers.Show();
         }
-
         private void CustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var catalogCustomers = new Catalog<Customer>(db, db.Customers);
             catalogCustomers.Show();
         }
-
         private void CheckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var catalogChecks = new Catalog<Check>(db, db.Checks);
@@ -89,18 +82,11 @@ namespace CrmUi
             UpdateLists();
 
         }
-
         private void ModelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var modForm = new ModForm();
             modForm.Show();
         }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void listBoxProducts_DoubleClick(object sender, EventArgs e)
         {
             if (listBoxProducts.SelectedItem is Product product)
@@ -108,8 +94,6 @@ namespace CrmUi
                 cart.Add(product);
                 UpdateLists();
             }
-
-
         }
         private void UpdateLists()
         {
@@ -119,7 +103,6 @@ namespace CrmUi
             listBoxCart.Items.AddRange(cart.GetAllProduct().ToArray());
             labelSumm.Text = "Итого; " + cart.ReturnSumProduct().ToString();
         }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var loginForm = new LoginForm();
@@ -143,7 +126,6 @@ namespace CrmUi
                 linkLabel1.Text = "Здравствуй " + customer.Name;
             }
         }
-
         private void buttonPay_Click(object sender, EventArgs e)
         {
             if (customer.Name != null)
@@ -152,14 +134,9 @@ namespace CrmUi
                 cashDesk.IsModel = false;
                 cashDesk.Enqueue(cart);
                 var check = cashDesk.SingleCustomerService(cart);
-
-
                 cart = new Cart(customer);
-
-
                 CheckPrint(check);
                 listBoxCart.Items.Clear();
-                
             }
             else
             {
@@ -170,7 +147,7 @@ namespace CrmUi
         {
             textBoxCheck.Clear();
             textBoxCheck.Text = "ООО Рога и копыта" + Environment.NewLine;
-            textBoxCheck.Text += "Чек "+check + Environment.NewLine;
+            textBoxCheck.Text += "Чек " + check + Environment.NewLine;
             textBoxCheck.Text += "Продавец: " + db.Sellers.Find(check.SellerId) + Environment.NewLine;
             textBoxCheck.Text += "Покупатель: " + db.Customers.Find(check.CustomerId) + Environment.NewLine;
             textBoxCheck.Text += "//////////////////////////" + Environment.NewLine;
@@ -187,7 +164,5 @@ namespace CrmUi
             textBoxCheck.Text += "//////////////////////////" + Environment.NewLine;
             textBoxCheck.Text += "Сумма: " + check.Summ + Environment.NewLine;
         }
-
-      
     }
 }
